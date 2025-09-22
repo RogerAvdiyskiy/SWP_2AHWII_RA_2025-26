@@ -13,7 +13,7 @@ class Bruch {
             throw new Error("Eingabe muss eine Ganze zahl sein !");
         }
         if (bruchstr.length == 1) {
-            ganzeZahl = (Number(bruchstr[0]))
+           let ganzeZahl = (Number(bruchstr[0]))
             return new Bruch(ganzeZahl, 0, 1)
         }
         if (bruchstr.length == 2) {
