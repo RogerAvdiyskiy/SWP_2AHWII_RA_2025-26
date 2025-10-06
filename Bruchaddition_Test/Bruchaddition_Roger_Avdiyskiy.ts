@@ -79,7 +79,7 @@ class Bruch {
       return ganzeZahl;
     }
 
-    return ganzeZahl + " " + zehlerE + "/" + nennerE;
+    return ganzeZahl + "_" + zehlerE + "/" + nennerE;
   }
 }
 
