@@ -76,7 +76,7 @@ class Bruch {
     }
 
     if (zehlerE === 0) {
-      return ganzeZahl;
+      return ganzeZahl + "_" + 0 + "/" + 1;
     }
 
     return ganzeZahl + "_" + zehlerE + "/" + nennerE;
