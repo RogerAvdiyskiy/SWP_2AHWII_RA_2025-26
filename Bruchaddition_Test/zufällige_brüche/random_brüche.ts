@@ -16,13 +16,12 @@ for(let i = 0; i < 15; i++){
     }*/
     let zehler2 = Math.ceil(Math.random() * (15))
     let zehler3 = zehler1 - zehler2;
-    let erweiterer = 0;
-    erweiterer = Math.ceil(Math.random() * 20);
-    zehler3 *= erweiterer;
-    nenner1 *= erweiterer;
-    erweiterer = Math.ceil(Math.random() * 20);
-    zehler2 *= erweiterer;
-    nenner2 *= erweiterer;
+    const erweiterer1 = Math.ceil(Math.random() * 20);
+    zehler3 *= erweiterer1;
+    nenner1 *= erweiterer1;
+    const erweiterer2 = Math.ceil(Math.random() * 20);
+    zehler2 *= erweiterer2;
+    nenner2 *= erweiterer2;
     //console.log("Bruch 1 und 2 " + zehler3 + "/" + nenner1 + "  " + zehler2 + "/" + nenner2);
 
     const b1 = new Bruch(0 , zehler3 , nenner1);
@@ -39,6 +38,7 @@ for(let i = 0; i < 15; i++){
         
     assertEquals(zwischen_variabel, vergleich);
     });
+
 }
 
     
