@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            margin: 30px;
+            background-color: antiquewhite;
+            
+        }
+        h1,h2 {
+            color: darkmagenta;
+        }
+        img{
+            width: 500px;
+            height: 500px;
+            
+        }
+        video{
+            width: 600px;
+            height: 400px;
+            
+        }
+        .knopf {
+        background-color: #0022ff;
+        color: rgb(11, 178, 61);
+        padding: 15px 15px;
+        border: rgb(51, 153, 56);
+        border-radius: 60px;
+        cursor: pointer;
+        font-size: 16px;
+    }
+
+    .knopf:hover {
+        background-color: #cc0025;
+    }
+    </style>
+</head>
+
+<body>
+    <h1>Mit h1 - h6 ertstellt man verschiedene überschriften mit kleiner werdenden Größe und Wichtigkeit</h1>
+    <h2>Hier etwas kleiner</h2>
+
+    <p>Mit p entsteht ein Absatz</p>
+
+    <button class="knopf"> type = "button"button erstellt einen knopf</button>
+    <p>mit button class="" kann man die klasse bestimmen des knopfes bestimmen</p>
+
+    <ol>
+        <li>Mit ol  und für jede Zeile li erstellt man eine sortierte Liste</li>
+    </ol>
+
+    <ul>
+        <li>Mit ul und für jede zeile li erstellt an eine unsortierte Liste</li>
+    </ul>
+
+    <p>Mit <span style = "color: blue;">"span und style = "color: frabe;" </span> kann man die Farbe eines Textteiles färben </p>
+    Mit dem <del>del</del> befehl kann man Texte durchstreichen und mit dem <ins> ins </ins> befehl  sachen hervorheben
+
+    <p><input type="email" name="email" placeholder="Cooles Eingabefeld"></p>
+    <p>Mit input erstellt man ein input feld mit definierbaren "type" "name" und "placeholder" dabei sieht den placeholder auf dem Eingabefeld</p>
+
+    <table>
+        <tr>
+            <td>table </td>
+            <td>=</td>
+            <td>tabelle erstellen</td>
+        </tr>
+        <tr>
+            <td>tr </td>
+            <td>=</td>
+            <td>tabellen zeile</td>
+        </tr>
+        <tr>
+            <td>th </td>
+            <td>=</td>
+            <td>Feld mit Text</td>
+        </tr>
+        <tr>
+            <th>td</th>
+            <th>=</th>  
+            <th>Inhalt fettgedruckt</th>
+        </tr>
+    </table>
+    <header> header erstellt eine kopfzeile</header>
+
+    <footer> footer erstellt ein fußzeile</footer>
+
+    <p>damit gemint ist nur die spezielle unterteilung <span style = "color:rgb(255, 136, 127);">nicht</span> die formatierung</p>
+
+    <img src="coole-melone.jpg" alt ="mit img src bild hinzufügen und alt text hinzufügen falls das bild nicht erscheint">
+    <p>mit img src bild hinzufügen und alt text hinzufügen falls das bild nicht erscheint</p>
+
+    <a href="https://www.youtube.com/watch?v=B5YokNW7tIs">Mit a und href erstellt man einen Text als Link</a>
+    <p>
+        Hier ein video vom affengeilsten Lied aller Zeiten:
+    </p>
+    <p>
+        P.S. : man kann auch mit einer vtt datei custom untertitel erstellen. wie immer quelle angegeben mit src.
+    </p>
+    <p>
+        <video src="life_could_be_a_dream.mp4" controls autoplay loop>
+        <track src="untertitel.vtt" kind="subtitles" srclang="de" label="Deutsch" default>
+    </video>
+    </p>
+    
+    <details>
+        <summary>
+            Was ist lang und orange?
+        </summary>
+        Ein Stück Krabbenimmitationsfleisch
+    </details>
+    
+    <p>mit details und drinnen summary kann man drinnen versteckte sachen schreiben die man aufklappen muss</p>
+    <label for="Tier-aussuchen">Welches Tier ist cooler?</label>
+    <p>
+        <select name="Tiere" id="Tier-aussuchen">
+        <option value="">Bitte Tier aussuchen</option>
+        <option value="Affe">Affe</option>
+        <option value="Chameleon">Chameleon</option>
+        <option value="Stinkekäfer">Stinkekäfer</option>
+        </select>
+    </p>
+   
+</body>
+
+</html>
