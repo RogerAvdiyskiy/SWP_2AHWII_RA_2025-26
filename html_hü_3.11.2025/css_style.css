@@ -52,4 +52,13 @@ input:hover[type="email"]{
     color: white;
 
 }
-
+#BGmusik1{
+    position: fixed;
+    top: 70px;
+    right: 20px;
+    width: 300px;
+    z-index: 1000;
+}
+#BGmusik2{
+    display: none;
+}
