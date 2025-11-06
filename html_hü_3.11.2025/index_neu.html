@@ -80,27 +80,34 @@
         <summary>
             Was ist lang und orange?
         </summary>
-        Ein Stück Krabbenimmitationsfleisch
+        <p style="margin-left: 20px;">Ein Stück Krabbenimmitationsfleisch</p>
+        <img class="k_img" src="krabbenimmitationsfleisch.jpeg" alt="Schade kein Bild da :[">
     </details>
     
-    <p>mit details und drinnen summary kann man drinnen versteckte sachen schreiben die man aufklappen muss</p>
-    <label for="Tier-aussuchen">Welches Tier ist cooler?</label>
-    <p>
-        <select name="Tiere" id="Tier-aussuchen">
-        <option value="">Bitte Tier aussuchen</option>
-        <option value="Affe">Affe</option>
-        <option value="Chameleon">Chameleon</option>
-        <option value="Stinkekäfer">Stinkekäfer</option>
-        </select>
-    </p>
+    <p style="margin-left: 30px;">mit details und drinnen summary kann man drinnen versteckte sachen schreiben die man aufklappen muss</p>
+    
    
-    <audio id="BGmusik1" controls autoplay loop>
+    <audio class="BG_musik" id="BGmusik1" controls autoplay loop>
 
         <source src="fahrstuhl_musik.mp3" type="audio/mpeg">
 
     </audio>
 
-<script src="js.js"></script>
+    <div class="feld">
+        <label class="tier_text" for="Tier-aussuchen">Welches Tier ist cooler?</label>
+    <p>
+        <select class="tier-auswähler" name="Tiere" id="Tier-aussuchen">
+            <option value="">Bitte Tier aussuchen</option>
+            <option value="Affe">Affe</option>
+            <option value="Chameleon">Chameleon</option>
+            <option value="Stinkekäfer">Stinkekäfer</option>
+        </select>
+    </p>
+    <p id="anzeige"></p>
+    <img class="bild_tier_auswahl" id="tier_bild" src="" alt="" >
+    </div>
+
+    <script src="js.js"></script>
 
 </body>
 
