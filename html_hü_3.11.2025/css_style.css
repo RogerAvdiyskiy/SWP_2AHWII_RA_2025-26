@@ -1,24 +1,27 @@
 
-    body {
-        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-        margin: 30px;
-        background-color: antiquewhite;
-        
-    }
-    h1,h2 {
-        color: darkmagenta;
-    }
-    img{
-        width: 500px;
-        height: 500px;
-        
-    }
-    video{
-        width: 600px;
-        height: 400px;
-        
-    }
-    .knopf {
+body {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    margin: 30px;
+    background-color: antiquewhite;
+    
+}
+h1,h2 {
+    color: darkmagenta;
+}
+img{
+    width: 500px;
+    height: 500px;
+    
+}
+video{
+    width: 600px;
+    height: 400px;
+    
+}
+
+/* Stilistik Knöpfe*/
+
+.knopf {
     background-color: #0022ff;
     color: rgb(11, 178, 61);
     padding: 15px 15px;
@@ -26,6 +29,9 @@
     border-radius: 60px;
     cursor: pointer;
     font-size: 16px;
+    font-family: 'Courier New', cursive;
+    margin-top: 35px;
+
 }
 
 .knopf:hover {
@@ -41,6 +47,25 @@
     border: 5px solid darkgoldenrod;
     border-radius: 20px;
 }
+#knopf1{
+    position: absolute;
+    left: 40px;
+    transform: translateY(-50%);
+}
+#knopf2{
+    position: absolute;
+    transform: translateY(-50%);
+    left: 33%
+
+}
+#knopf3{
+    position: absolute;
+    transform: translateY(-50%);
+    right: 33%;
+}
+
+/* Stilistik Input*/
+
 input[type="email"]{
     width: 150px;
     height: 40px;
@@ -52,16 +77,15 @@ input:hover[type="email"]{
     color: white;
 
 }
+
+/* Stilistik Musik*/
+
 #BGmusik1{
     position: fixed;
     top: 90px;
     right: 20px;
     width: 300px;
     z-index: 1000;
-}
-.k_img{
-    width: 50px;
-    height: 50px;
 }
 .BG_musik{
     border: 10px solid grey;
@@ -73,12 +97,16 @@ input:hover[type="email"]{
     border: 8px solid darkblue;
 
 }
-.feld{
-    height: 300px;
-    width: auto;
-    background-color: grey;
-    border-radius: 30px;
+
+/* Stilistik Bild aufklappbar*/
+
+.k_img{
+    width: 50px;
+    height: 50px;
 }
+
+/* Stilistik Tiere*/
+
 .tier_text{
     font-size: xx-large;
     color: darkblue;
@@ -90,8 +118,79 @@ input:hover[type="email"]{
     margin-top: 20px;
     
 }
-.bild_tier_auswahl{
-    width: 100px;
-    height: 100px;
-    margin-left: 20px;
+#tier_bild{
+    width: 220px;
+    height: 220px;
+    left: 50%;
+    top: 50%;
+    position: absolute;
+    transform: translate(-50%, -50%);
 }
+#anzeige{
+    font-size: x-large;
+    margin-top: 35px;
+    margin-left: 25%;
+    display: inline-block;
+    color: black;
+    position: relative;
+    transform: translateY(-50%);
+    
+    
+}
+
+/*Stilistik Feld class*/
+
+.feld{
+    height: 300px;
+    width: auto;
+    background-color: grey;
+    border-radius: 30px;
+    position: relative;
+}
+
+/*Stilistik Tabelle*/
+.tabelle{
+    border: 4px solid black;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    height: 80%;
+    
+}
+#erste_zeile th{
+    background-color: rgb(32, 93, 178);
+    border: 3px solid darkgreen;
+    padding: 10px;
+}
+#affe_zeile th{
+    background-color: rgb(132, 64, 64);
+    border: 3px solid darkgreen;
+    
+
+}
+#chameleon_zeile th{
+    animation: chameleon 10s linear infinite;
+    border: 3px solid darkgreen;
+    
+}
+
+@keyframes chameleon {
+  0%   { background-color: hsl(0, 100%, 50%); }
+  10%  { background-color: hsl(36, 100%, 50%); }
+  20%  { background-color: hsl(72, 100%, 50%); }
+  30%  { background-color: hsl(108, 100%, 50%); }
+  40%  { background-color: hsl(144, 100%, 50%); }
+  50%  { background-color: hsl(180, 100%, 50%); }
+  60%  { background-color: hsl(216, 100%, 50%); }
+  70%  { background-color: hsl(252, 100%, 50%); }
+  80%  { background-color: hsl(288, 100%, 50%); }
+  90%  { background-color: hsl(324, 100%, 50%); }
+  100% { background-color: hsl(360, 100%, 50%); }
+}
+
+#stikekafer_zeile th{
+    background-color: lightyellow;
+    border: 3px solid darkgreen;
+} 

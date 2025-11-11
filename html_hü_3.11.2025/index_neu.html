@@ -1,114 +1,148 @@
-<!DOCTYPE html>
-<html lang="de">
+    <!DOCTYPE html>
+    <html lang="de">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="css_style.css">
-    
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <link rel="stylesheet" href="css_style.css">
 
-<body>
-    <h1>Mit h1 - h6 ertstellt man verschiedene überschriften mit kleiner werdenden Größe und Wichtigkeit</h1>
-    <h2>Hier etwas kleiner</h2>
+    </head>
 
-    <p>Mit p entsteht ein Absatz</p>
+    <body>
+        <h1>Mit h1 - h6 ertstellt man verschiedene überschriften mit kleiner werdenden Größe und Wichtigkeit</h1>
 
-    <button class="knopf"> type = "button"button erstellt einen knopf</button>
-    <p>mit button class="" kann man die klasse bestimmen des knopfes bestimmen</p>
+        <div class="feld">
+            <button class="knopf" id="knopf1"> 1</button>
 
-    <ol>
-        <li>Mit ol  und für jede Zeile li erstellt man eine sortierte Liste</li>
-    </ol>
+            <button class="knopf" id="knopf2"> 2</button>
 
-    <ul>
-        <li>Mit ul und für jede zeile li erstellt an eine unsortierte Liste</li>
-    </ul>
+            <button class="knopf" id="knopf3"> 3</button>
+        </div>
 
-    <p>Mit <span style = "color: blue;">"span und style = "color: frabe;" </span> kann man die Farbe eines Textteiles färben </p>
-    Mit dem <del>del</del> befehl kann man Texte durchstreichen und mit dem <ins> ins </ins> befehl  sachen hervorheben
+        <p>mit button class="" kann man die klasse bestimmen des knopfes bestimmen</p>
 
-    <p><input type="email" name="email" placeholder="Cooles Eingabefeld"></p>
-    <p>Mit input erstellt man ein input feld mit definierbaren "type" "name" und "placeholder" dabei sieht den placeholder auf dem Eingabefeld</p>
+        <ol>
+            <li>Mit ol und für jede Zeile li erstellt man eine sortierte Liste</li>
+        </ol>
 
-    <table>
-        <tr>
-            <td>table </td>
-            <td>=</td>
-            <td>tabelle erstellen</td>
-        </tr>
-        <tr>
-            <td>tr </td>
-            <td>=</td>
-            <td>tabellen zeile</td>
-        </tr>
-        <tr>
-            <td>th </td>
-            <td>=</td>
-            <td>Feld mit Text</td>
-        </tr>
-        <tr>
-            <th>td</th>
-            <th>=</th>  
-            <th>Inhalt fettgedruckt</th>
-        </tr>
-    </table>
-    <header> header erstellt eine kopfzeile</header>
+        <ul>
+            <li>Mit ul und für jede zeile li erstellt an eine unsortierte Liste</li>
+        </ul>
 
-    <footer> footer erstellt ein fußzeile</footer>
+        <p>Mit <span style="color: blue;">"span und style = "color: frabe;" </span> kann man die Farbe eines Textteiles
+            färben </p>
+        Mit dem <del>del</del> befehl kann man Texte durchstreichen und mit dem <ins> ins </ins> befehl sachen hervorheben
 
-    <p>damit gemint ist nur die spezielle unterteilung <span style = "color:rgb(255, 136, 127);">nicht</span> die formatierung</p>
+        <p><input type="email" name="email" placeholder="Cooles Eingabefeld"></p>
+        <p>Mit input erstellt man ein input feld mit definierbaren "type" "name" und "placeholder" dabei sieht den
+            placeholder auf dem Eingabefeld</p>
+            <div class="feld">
+                
+                <table class="tabelle">
+                    <tr id="erste_zeile">
+                        <th>
+                            Tier
+                        </th>
+                        <th>
+                            coolheit
+                        </th>
+                        <th>bedroht?</th>
+                    </tr>
+                    <tr id="affe_zeile">
+                        <th>
+                            Affe
+                        </th>
+                        <th>
+                            extrem cool
+                        </th>
+                        <th>
+                            teilweise
+                        </th>
 
-    <img src="coole-melone.jpg" alt ="mit img src bild hinzufügen und alt text hinzufügen falls das bild nicht erscheint">
-    <p>mit img src bild hinzufügen und alt text hinzufügen falls das bild nicht erscheint</p>
+                    </tr>
+                    <tr id="chameleon_zeile">
+                        <th>
+                            Chameleon
+                        </th>
+                        <th>
+                            sehr cool
+                        </th>
+                        <th>
+                            ja
+                        </th>
+                    </tr>
+                    <tr id="stikekafer_zeile">
+                        <th>
+                            Stinkekäfer
+                        </th>
+                        <th>
+                            übercool
+                        </th>
+                        <th>
+                            nein
+                        </th>
+                    </tr>
+                </table>
+            </div>
+        <header> header erstellt eine kopfzeile</header>
 
-    <a href="https://www.youtube.com/watch?v=B5YokNW7tIs">Mit a und href erstellt man einen Text als Link</a>
-    <p>
-        Hier ein video vom affengeilsten Lied aller Zeiten:
-    </p>
-    <p>
-        P.S. : man kann auch mit einer vtt datei custom untertitel erstellen. wie immer quelle angegeben mit src.
-    </p>
-    <p>
-        <video src="life_could_be_a_dream.mp4" controls autoplay loop>
-        <track src="untertitel.vtt" kind="subtitles" srclang="de" label="Deutsch" default>
-    </video>
-    </p>
-    
-    <details>
-        <summary>
-            Was ist lang und orange?
-        </summary>
-        <p style="margin-left: 20px;">Ein Stück Krabbenimmitationsfleisch</p>
-        <img class="k_img" src="krabbenimmitationsfleisch.jpeg" alt="Schade kein Bild da :[">
-    </details>
-    
-    <p style="margin-left: 30px;">mit details und drinnen summary kann man drinnen versteckte sachen schreiben die man aufklappen muss</p>
-    
-   
-    <audio class="BG_musik" id="BGmusik1" controls autoplay loop>
+        <footer> footer erstellt ein fußzeile</footer>
 
-        <source src="fahrstuhl_musik.mp3" type="audio/mpeg">
+        <p>damit gemint ist nur die spezielle unterteilung <span style="color:rgb(255, 136, 127);">nicht</span> die
+            formatierung</p>
 
-    </audio>
+        <img src="coole-melone.jpg"
+            alt="mit img src bild hinzufügen und alt text hinzufügen falls das bild nicht erscheint">
+        <p>mit img src bild hinzufügen und alt text hinzufügen falls das bild nicht erscheint</p>
 
-    <div class="feld">
-        <label class="tier_text" for="Tier-aussuchen">Welches Tier ist cooler?</label>
-    <p>
-        <select class="tier-auswähler" name="Tiere" id="Tier-aussuchen">
-            <option value="">Bitte Tier aussuchen</option>
-            <option value="Affe">Affe</option>
-            <option value="Chameleon">Chameleon</option>
-            <option value="Stinkekäfer">Stinkekäfer</option>
-        </select>
-    </p>
-    <p id="anzeige"></p>
-    <img class="bild_tier_auswahl" id="tier_bild" src="" alt="" >
-    </div>
+        <a href="https://www.youtube.com/watch?v=B5YokNW7tIs">Mit a und href erstellt man einen Text als Link</a>
+        <p>
+            Hier ein video vom affengeilsten Lied aller Zeiten:
+        </p>
+        <p>
+            P.S. : man kann auch mit einer vtt datei custom untertitel erstellen. wie immer quelle angegeben mit src.
+        </p>
+        <p>
+            <video src="life_could_be_a_dream.mp4" controls autoplay loop>
+                <track src="untertitel.vtt" kind="subtitles" srclang="de" label="Deutsch" default>
+            </video>
+        </p>
 
-    <script src="js.js"></script>
+        <details>
+            <summary>
+                Was ist lang und orange?
+            </summary>
+            <p style="margin-left: 20px;">Ein Stück Krabbenimmitationsfleisch</p>
+            <img class="k_img" src="krabbenimmitationsfleisch.jpeg" alt="Schade kein Bild da :[">
+        </details>
 
-</body>
+        <p style="margin-left: 30px;">mit details und drinnen summary kann man drinnen versteckte sachen schreiben die man
+            aufklappen muss
+        </p>
 
-</html>
+        <audio class="BG_musik" id="BGmusik1" controls autoplay loop>
+
+            <source src="fahrstuhl_musik.mp3" type="audio/mpeg">
+
+        </audio>
+
+        <div class="feld">
+            <label class="tier_text" for="Tier-aussuchen">Welches Tier ist cooler?</label>
+            <p>
+                <select class="tier-auswähler" name="Tiere" id="Tier-aussuchen">
+                    <option value="">Bitte Tier aussuchen</option>
+                    <option value="Affe">Affe</option>
+                    <option value="Chameleon">Chameleon</option>
+                    <option value="Stinkekäfer">Stinkekäfer</option>
+                </select>
+            </p>
+            <p id="anzeige"></p>
+            <img id="tier_bild" src="?" alt="?">
+        </div>
+
+        <script src="js.js"></script>
+        
+    </body>
+
+    </html>
