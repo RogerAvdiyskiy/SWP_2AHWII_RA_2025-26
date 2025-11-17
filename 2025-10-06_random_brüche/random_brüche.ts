@@ -1,4 +1,4 @@
-import {Bruch} from "../Bruchaddition_Roger_Avdiyskiy.ts";
+import {Bruch} from "./Bruchaddition_Roger_Avdiyskiy.ts";
 import { assertEquals,  } from "@std/assert";
 for(let i = 0; i < 15; i++){
     let zehler1 = Math.ceil(Math.random() * 100);
