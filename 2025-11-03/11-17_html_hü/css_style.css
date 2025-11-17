@@ -1,228 +1,230 @@
-
+/* ===============================================================
+   1. GLOBAL STYLES
+=============================================================== */
 body {
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-family: Arial, sans-serif;
     margin: 30px;
     background-color: antiquewhite;
-    
 }
-h1,h2 {
+
+h1, h2 {
     color: darkmagenta;
 }
-img{
-    width: 500px;
-    height: 500px;
-    
-}
-video{
-    width: 600px;
-    height: 400px;
-    
+
+img, video {
+    max-width: 100%;
+    height: auto;
+    border-radius: 12px;
 }
 
-/* Stilistik Knöpfe*/
+/* ===============================================================
+   2. BUTTONS (gleichmäßig verteilt)
+=============================================================== */
+.feld.knopf-feld {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    background-color: grey;
+    border-radius: 30px;
+    margin-bottom: 30px;
+    height: 80px;
+}
 
 .knopf {
-    background-color: #0022ff;
-    color: rgb(11, 178, 61);
-    padding: 15px 15px;
-    border: 4px solid rgb(51, 153, 56);
-    border-radius: 60px;
+    background: #3949ab;
+    color: white;
+    padding: 14px 20px;
+    border: none;
+    border-radius: 12px;
     cursor: pointer;
     font-size: 16px;
-    font-family: 'Courier New', cursive;
-    margin-top: 35px;
-
+    transition: 0.2s;
+    flex: 1;
+    margin: 0 10px;
 }
 
 .knopf:hover {
-    background-color: #cc0025;
-    border: 5px solid black;
-    color: thistle  ;
-    transform: scale(1.03);
+    background: #5c6bc0;
+    transform: scale(1.05);
 }
-.knopf:active{
+
+.knopf:active {
     transform: scale(0.95);
-    color: black;
-    background-color: violet;
-    border: 5px solid darkgoldenrod;
-    border-radius: 20px;
-}
-#knopf1{
-    position: absolute;
-    left: 40px;
-    transform: translateY(-50%);
-}
-#knopf2{
-    position: absolute;
-    transform: translateY(-50%);
-    left: 33%
-
-}
-#knopf3{
-    position: absolute;
-    transform: translateY(-50%);
-    right: 33%;
+    background: #283593;
 }
 
-/* Stilistik Input*/
-
-input[type="email"]{
-    width: 150px;
-    height: 40px;
-    background-color: plum;
-    border: 2px solid darkcyan;
-}
-input:hover[type="email"]{
-    background-color: darkmagenta;
-    color: white;
-
-}
-
-/* Stilistik Musik*/
-
-#BGmusik1{
-    position: fixed;
-    top: 90px;
-    right: 20px;
-    width: 300px;
-    z-index: 1000;
-}
-.BG_musik{
-    border: 10px solid grey;
-    box-shadow: inset 0px 0px 80px black;
-    border-radius: 7px;
-    
-}
-.BG_musik:hover{
-    border: 8px solid darkblue;
-
-}
-
-/* Stilistik Bild aufklappbar*/
-
-.k_img{
-    width: 50px;
-    height: 50px;
-}
-
-/* Stilistik Tiere*/
-
-.tier_text{
-    font-size: xx-large;
-    color: darkblue;
-    margin-left: 20px;
-}
-.tier-auswähler{
-    font-size: 20px;
-    margin-left: 20px;
-    margin-top: 20px;
-    
-}
-#tier_bild{
-    width: 220px;
-    height: 220px;
-    left: 50%;
-    top: 50%;
-    position: absolute;
-    transform: translate(-50%, -50%);
-}
-#anzeige{
-    font-size: x-large;
-    margin-top: 35px;
-    margin-left: 25%;
-    display: inline-block;
-    color: black;
-    position: relative;
-    transform: translateY(-50%);
-    
-    
-}
-
-/*Stilistik Feld class*/
-
-.feld{
-    height: 300px;
-    width: auto;
+/* ===============================================================
+   3. FORMULAR-FELDER (Input)
+=============================================================== */
+.feld.input-feld {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 15px;
     background-color: grey;
     border-radius: 30px;
-    position: relative;
+    padding: 20px;
+    margin-bottom: 30px;
 }
 
-/*Stilistik Tabelle*/
-.tabelle{
-    border: 4px solid black;
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
+.eingabefeld {
+    flex: 1;
+    min-width: 200px;
+    max-width: 300px;
+    height: 50px;
+    padding: 0 10px;
+    border-radius: 8px;
+    border: 2px solid darkcyan;
+    background-color: plum;
+    font-size: 16px;
+}
+
+.eingabefeld:hover {
+    background-color: darkmagenta;
+    color: white;
+}
+
+/* ===============================================================
+   4. AUDIO-PLAYER
+=============================================================== */
+.audio-container {
+    position: absolute ; 
+    top: 20px;
+    margin-right: 20px;
+}
+
+#BGmusik1 {
+    width: 300px;
+    border: 6px solid grey;
+    box-shadow: inset 0 0 40px black;
+    border-radius: 7px;
+    transition: all 0.3s ease;
+}
+
+#BGmusik1:hover {
+    border-color: darkblue;
+}
+
+/* ===============================================================
+   5. TIER-AUSWAHL & BILDER
+=============================================================== */
+.feld.tier-feld {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 20px;
+    background-color: grey;
+    border-radius: 30px;
+    padding: 20px;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+}
+
+.tier_text {
+    font-size: 24px;
+    color: darkblue;
+}
+
+.tier-auswähler {
+    font-size: 20px;
+}
+
+#anzeige {
+    font-size: 22px;
+    color: black;
+    padding: 5px 10px; 
+    border: 2px solid darkgreen;
+    border-radius: 8px;
+    display: inline-block;
+    margin-top: 10px;
+}
+
+#tier_bild {
+    width: 220px;
+    height: 220px;
+    object-fit: cover;
+    border-radius: 12px;
+}
+
+/* ===============================================================
+   6. FLEX-CONTAINER (FELD) Allgemein
+=============================================================== */
+.feld {
+    padding: 20px;
+    background-color: grey;
+    border-radius: 30px;
+    margin-bottom: 30px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+/* ===============================================================
+   7. TABELLEN
+=============================================================== */
+.tabelle {
     width: 80%;
-    height: 80%;
-    
+    margin: 0 auto;
+    border: 4px solid black;
+    border-collapse: collapse;
 }
-#erste_zeile th{
-    background-color: rgb(32, 93, 178);
-    border: 3px solid darkgreen;
-    padding: 10px;
-}
-#affe_zeile th{
-    background-color: rgb(132, 64, 64);
-    border: 3px solid darkgreen;
-    
 
-}
-#chameleon_zeile th{
-    animation: chameleon 10s linear infinite;
+.tabelle th, .tabelle td {
+    padding: 10px;
     border: 3px solid darkgreen;
-    
+    text-align: center;
+}
+
+#erste_zeile th {
+    background-color: rgb(32, 93, 178);
+}
+
+#affe_zeile td {
+    background-color: rgb(132, 64, 64);
+}
+
+#chameleon_zeile td {
+    animation: chameleon 10s linear infinite;
 }
 
 @keyframes chameleon {
-  0%   { background-color: hsl(0, 100%, 50%); }
-  10%  { background-color: hsl(36, 100%, 50%); }
-  20%  { background-color: hsl(72, 100%, 50%); }
-  30%  { background-color: hsl(108, 100%, 50%); }
-  40%  { background-color: hsl(144, 100%, 50%); }
-  50%  { background-color: hsl(180, 100%, 50%); }
-  60%  { background-color: hsl(216, 100%, 50%); }
-  70%  { background-color: hsl(252, 100%, 50%); }
-  80%  { background-color: hsl(288, 100%, 50%); }
-  90%  { background-color: hsl(324, 100%, 50%); }
-  100% { background-color: hsl(360, 100%, 50%); }
+    0%   { background-color: hsl(0, 100%, 50%); }
+    10%  { background-color: hsl(36, 100%, 50%); }
+    20%  { background-color: hsl(72, 100%, 50%); }
+    30%  { background-color: hsl(108, 100%, 50%); }
+    40%  { background-color: hsl(144, 100%, 50%); }
+    50%  { background-color: hsl(180, 100%, 50%); }
+    60%  { background-color: hsl(216, 100%, 50%); }
+    70%  { background-color: hsl(252, 100%, 50%); }
+    80%  { background-color: hsl(288, 100%, 50%); }
+    90%  { background-color: hsl(324, 100%, 50%); }
+    100% { background-color: hsl(360, 100%, 50%); }
 }
 
-#stikekafer_zeile th{
+#stikekafer_zeile td {
     background-color: lightyellow;
-    border: 3px solid darkgreen;
-} 
+}
 
-/* Stilistik Aufklappbar*/
-
-#krabbe{
-    margin-top: 20px;
-    margin-left: 20px;
-    font-size: x-large;
+/* ===============================================================
+   8. DETAILS / AUFKLAPP-BEREICH
+=============================================================== */
+#krabbe {
+    font-size: 24px;
     font-family: 'Times New Roman';
-    position: absolute;
 }
-#krabbe_text{
-    font-size: large;
+
+#krabbe_text {
+    font-size: 18px;
     color: darkred;
-    font-family: 'Arial Black', Gadget, sans-serif;
-    position: absolute;
-    margin-top: 70px;
-    margin-left: 30px;
+    font-family: Arial Black;
 }
-#k_img{
-    position: absolute;
-    top: 50%;
-    margin-left: 35%;
-    height: 80%;
-    width: 20%;
-    transform: translateY(-50%);
+
+#k_img {
+    width: 150px;
+    margin-top: 20px;
 }
-#k_e_text{
-    position: absolute;
-    top: 80%;
-    margin-left: 25px;
-    
+
+#k_e_text {
+    margin-top: 20px;
 }

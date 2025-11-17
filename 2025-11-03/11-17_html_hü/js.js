@@ -1,13 +1,13 @@
 const audio = document.getElementById("BGmusik1");
+const selectTier = document.getElementById('Tier-aussuchen');
+const anzeige = document.getElementById('anzeige');
+const tierBild = document.getElementById('tier_bild');
 
 // Lautstärke auf 0.3 setzen, sobald der Benutzer Play klickt
 audio.addEventListener("play", () => {
     audio.volume = 0.5;
 });
 
-const selectTier = document.getElementById('Tier-aussuchen');
-const anzeige = document.getElementById('anzeige');
-const tierBild = document.getElementById('tier_bild');
 
 selectTier.addEventListener('change', () => {
     const wert = selectTier.value;
@@ -36,6 +36,15 @@ selectTier.addEventListener('change', () => {
         anzeige.textContent = '';
         tierBild.alt = '';
         tierBild.src = '';
+    }
+});
+
+document.getElementById("toggleMusik").addEventListener("click", function () {
+    const audioPlayer = document.getElementById("BGmusik1");
+    if (audioPlayer.style.display === "none") {
+        audioPlayer.style.display = "block"; // Player einblenden
+    } else {
+        audioPlayer.style.display = "none"; // Player ausblenden
     }
 });
 
