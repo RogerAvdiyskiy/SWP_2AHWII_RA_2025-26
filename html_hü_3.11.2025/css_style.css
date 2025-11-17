@@ -194,3 +194,35 @@ input:hover[type="email"]{
     background-color: lightyellow;
     border: 3px solid darkgreen;
 } 
+
+/* Stilistik Aufklappbar*/
+
+#krabbe{
+    margin-top: 20px;
+    margin-left: 20px;
+    font-size: x-large;
+    font-family: 'Times New Roman';
+    position: absolute;
+}
+#krabbe_text{
+    font-size: large;
+    color: darkred;
+    font-family: 'Arial Black', Gadget, sans-serif;
+    position: absolute;
+    margin-top: 70px;
+    margin-left: 30px;
+}
+#k_img{
+    position: absolute;
+    top: 50%;
+    margin-left: 35%;
+    height: 80%;
+    width: 20%;
+    transform: translateY(-50%);
+}
+#k_e_text{
+    position: absolute;
+    top: 80%;
+    margin-left: 25px;
+    
+}

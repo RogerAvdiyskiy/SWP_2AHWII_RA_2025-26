@@ -108,25 +108,21 @@
                 <track src="untertitel.vtt" kind="subtitles" srclang="de" label="Deutsch" default>
             </video>
         </p>
-
-        <details>
-            <summary>
-                Was ist lang und orange?
-            </summary>
-            <p style="margin-left: 20px;">Ein Stück Krabbenimmitationsfleisch</p>
-            <img class="k_img" src="krabbenimmitationsfleisch.jpeg" alt="Schade kein Bild da :[">
-        </details>
-
-        <p style="margin-left: 30px;">mit details und drinnen summary kann man drinnen versteckte sachen schreiben die man
+        <div class="feld">
+            <details>
+                <summary id="krabbe">
+                    Was ist lang und orange?
+                </summary>
+                <p id="krabbe_text" style="margin-left: 20px;">Ein Stück Krabbenimmitationsfleisch</p>
+                <img id="k_img" src="krabbenimmitationsfleisch.jpeg" alt="Schade kein Bild da :[">
+            </details>
+            <p id="k_e_text">mit details und drinnen summary kann man drinnen <br>versteckte sachen schreiben die man
             aufklappen muss
         </p>
-
-        <audio class="BG_musik" id="BGmusik1" controls autoplay loop>
-
-            <source src="fahrstuhl_musik.mp3" type="audio/mpeg">
-
-        </audio>
-
+            
+        </div>
+        <br>
+        
         <div class="feld">
             <label class="tier_text" for="Tier-aussuchen">Welches Tier ist cooler?</label>
             <p>
@@ -140,7 +136,12 @@
             <p id="anzeige"></p>
             <img id="tier_bild" src="?" alt="?">
         </div>
+        
+        <audio class="BG_musik" id="BGmusik1" controls autoplay loop>
 
+            <source src="fahrstuhl_musik.mp3" type="audio/mpeg">
+
+        </audio>
         <script src="js.js"></script>
         
     </body>
