@@ -1,0 +1,271 @@
+/* ===============================================================
+   1. GLOBAL STYLES
+=============================================================== */
+@font-face {
+    font-family: 'font_ss';
+    font-weight: 500;
+    font-style: normal;
+    src: url('fonts/playwrite-at-guides-v1-latin-regular.woff2') format('woff2');
+}
+
+body {
+    font-family: 'font_ss',Arial, sans-serif;
+    margin: 30px;
+    background-color: antiquewhite;
+}
+
+h1, h2 {
+    color: darkmagenta;
+}
+
+img, video {
+    max-width: 100%;
+    height: auto;
+    border-radius: 12px;
+}
+
+/* ===============================================================
+   2. BUTTONS (gleichmäßig verteilt)
+=============================================================== */
+.feld.knopf-feld {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    background-color: grey;
+    border-radius: 30px;
+    margin-bottom: 30px;
+    height: 80px;
+}
+
+.knopf {
+    background: #3949ab;
+    color: white;
+    padding: 14px 20px;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: 0.2s;
+    flex: 1;
+    margin: 0 10px;
+    font-family: 'font_ss';
+}
+
+.knopf:hover {
+    background: #5c6bc0;
+    transform: scale(1.05);
+}
+
+.knopf:active {
+    transform: scale(0.95);
+    background: #283593;
+}
+
+/* ===============================================================
+   3. FORMULAR-FELDER (Input)
+=============================================================== */
+.feld.input-feld {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 15px;
+    background-color: grey;
+    border-radius: 30px;
+    padding: 20px;
+    margin-bottom: 30px;
+}
+
+.eingabefeld {
+    flex: 1;
+    min-width: 200px;
+    max-width: 300px;
+    height: 50px;
+    padding: 0 10px;
+    border-radius: 8px;
+    border: 2px solid darkcyan;
+    background-color: plum;
+    font-size: 16px;
+    font-family: 'font_ss';
+}
+
+.eingabefeld:hover {
+    background-color: darkmagenta;
+    color: white;
+}
+
+/* ===============================================================
+   4. AUDIO-PLAYER
+=============================================================== */
+.audio-container {
+    position: absolute ; 
+    top: 20px;
+    margin-right: 20px;
+}
+
+#BGmusik1 {
+    width: 300px;
+    border: 6px solid grey;
+    box-shadow: inset 0 0 40px black;
+    border-radius: 7px;
+    transition: all 0.3s ease;
+}
+
+#BGmusik1:hover {
+    border-color: darkblue;
+}
+
+/* ===============================================================
+   5. TIER-AUSWAHL & BILDER
+=============================================================== */
+.feld.tier-feld {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    background-color: grey;
+    border-radius: 30px;
+    padding: 20px;
+    margin-bottom: 30px;
+}
+
+.tier_text {
+    font-size: 24px;
+    color: darkblue;
+}
+
+.tier-auswähler {
+    font-size: 20px;
+    font-family: 'font_ss';
+}
+
+#anzeige {
+    font-size: 22px;
+    color: black;
+    padding: 5px 10px; 
+    border: 2px solid darkgreen;
+    border-radius: 8px;
+    display: inline-block;
+    margin-top: 10px;
+}
+
+#tier_bild {
+    width: 220px;
+    height: 220px;
+    object-fit: cover;
+    border-radius: 12px;
+}
+
+/* ===============================================================
+   6. FLEX-CONTAINER (FELD) Allgemein
+=============================================================== */
+.feld {
+    padding: 20px;
+    background-color: grey;
+    border-radius: 30px;
+    margin-bottom: 30px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 20px;
+}
+
+/* ===============================================================
+   7. TABELLEN
+=============================================================== */
+.tabelle {
+    width: 80%;
+    margin: 0 auto;
+    border: 4px solid black;
+    border-collapse: collapse;
+}
+
+.tabelle th, .tabelle td {
+    padding: 10px;
+    border: 3px solid darkgreen;
+    text-align: center;
+}
+
+#erste_zeile th {
+    background-color: rgb(32, 93, 178);
+}
+
+#affe_zeile td {
+    background-color: rgb(132, 64, 64);
+}
+
+#chameleon_zeile td {
+    animation: chameleon 10s linear infinite;
+}
+
+@keyframes chameleon {
+    0%   { background-color: hsl(0, 100%, 50%); }
+    10%  { background-color: hsl(36, 100%, 50%); }
+    20%  { background-color: hsl(72, 100%, 50%); }
+    30%  { background-color: hsl(108, 100%, 50%); }
+    40%  { background-color: hsl(144, 100%, 50%); }
+    50%  { background-color: hsl(180, 100%, 50%); }
+    60%  { background-color: hsl(216, 100%, 50%); }
+    70%  { background-color: hsl(252, 100%, 50%); }
+    80%  { background-color: hsl(288, 100%, 50%); }
+    90%  { background-color: hsl(324, 100%, 50%); }
+    100% { background-color: hsl(360, 100%, 50%); }
+}
+
+#stikekafer_zeile td {
+    background-color: lightyellow;
+}
+
+/* ===============================================================
+   8. DETAILS / AUFKLAPP-BEREICH
+=============================================================== */
+#krabbe {
+    font-size: 24px;
+    font-family: 'font_ss';
+}
+
+#krabbe_text {
+    font-size: 18px;
+    color: darkred;
+    font-family: 'font_ss' Black;
+}
+
+#k_img {
+    width: 150px;
+    margin-top: 20px;
+}
+
+#k_e_text {
+    margin-top: 20px;
+}
+/* ===============================================================
+   9. Melonen Feld
+=============================================================== */
+
+.feld-melonen-feld{
+
+    display: flex; 
+    justify-content: flex-start;
+    align-items: center;
+    position: relative;
+
+    background-color: grey;
+
+    min-height: 250px;
+    padding: 20px;
+    border-radius: 30px;
+    margin-bottom: 30px;
+    gap: 20px;
+    width: 100%;
+    
+    
+    
+}
+
+#melonen-bild{
+
+    transition: transform 1s ease-in-out; 
+    transform: translateX(0);
+    
+}
