@@ -228,7 +228,7 @@ img, video {
 #krabbe_text {
     font-size: 18px;
     color: darkred;
-    font-family: 'font_ss' Black;
+    font-family: 'font_ss', Black;
 }
 
 #k_img {
