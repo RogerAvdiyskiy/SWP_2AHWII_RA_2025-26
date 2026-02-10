@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Funktionsrechner</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="header-content">
+                <div class="header-text">
+                    <h1 class="title">Funktionsrechner</h1>
+                    <p class="subtitle">Mathematische Funktionen berechnen</p>
+                </div>
+                <button id="theme-toggle" class="theme-toggle" aria-label="Dark mode toggle">
+                    <svg class="sun-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                    <svg class="moon-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                </button>
+            </div>
+        </header>
+
+        <main class="main">
+            <section class="input-section">
+                <div class="input-group">
+                    <div class="input-wrapper">
+                        <label for="start">Startwert</label>
+                        <input type="number" id="start" placeholder="0" step="any">
+                    </div>
+                    <div class="input-wrapper">
+                        <label for="end">Endwert</label>
+                        <input type="number" id="end" placeholder="10" step="any">
+                    </div>
+                    <div class="input-wrapper">
+                        <label for="step">Schrittweite</label>
+                        <input type="number" id="step" placeholder="0.5" step="any">
+                    </div>
+                </div>
+                <button id="starten" class="calculate-btn">
+                    <span>Berechnen</span>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M9 11l3 3L22 4"></path>
+                        <path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"></path>
+                    </svg>
+                </button>
+            </section>
+
+            <section class="functions-info">
+                <h2>Funktionen</h2>
+                <div class="functions-grid">
+                    <div class="function-card">
+                        <span class="function-name">f(x)</span>
+                        <span class="function-formula">= x²</span>
+                    </div>
+                    <div class="function-card">
+                        <span class="function-name">g(x)</span>
+                        <span class="function-formula">= x² ÷ 4</span>
+                    </div>
+                    <div class="function-card">
+                        <span class="function-name">h(x)</span>
+                        <span class="function-formula">= x² - 4</span>
+                    </div>
+                    <div class="function-card">
+                        <span class="function-name">i(x)</span>
+                        <span class="function-formula">= x² ÷ 4 - 4</span>
+                    </div>
+                </div>
+            </section>
+
+            <section class="table-section">
+                <h2>Wertetabelle</h2>
+                <div class="table-wrapper">
+                    <table class="results-table">
+                        <thead>
+                            <tr>
+                                <th>x</th>
+                                <th>f(x)</th>
+                                <th>g(x)</th>
+                                <th>h(x)</th>
+                                <th>i(x)</th>
+                            </tr>
+                        </thead>
+                        <tbody id="table-body">
+                            <tr class="empty-state">
+                                <td colspan="5">
+                                    <div class="empty-content">
+                                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                            <path d="M9 11H3m6 0v6m0-6l-4 4m14-4h6m-6 0v6m0-6l4 4"></path>
+                                        </svg>
+                                        <p>Geben Sie Werte ein und klicken Sie auf "Berechnen"</p>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <section class="chart-section">
+                <h2>Funktionsgraphen</h2>
+                <div class="chart-controls">
+                    <button id="toggle-chart" class="chart-toggle-btn">Graphen einblenden</button>
+                </div>
+                <div id="chart-container" class="chart-container" style="display: none;">
+                    <canvas id="function-chart"></canvas>
+                </div>
+            </section>
+        </main>
+
+        <footer class="footer">
+            <p>&copy; 2026 Funktionsrechner</p>
+        </footer>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="script.js" defer></script>
+</body>
+</html>
