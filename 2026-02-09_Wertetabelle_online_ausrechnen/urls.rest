@@ -1,0 +1,1 @@
+GET http://10.91.1.85:5500/SWP_2AHWII_RA_2025-26/2026-02-09_Wertetabelle_online_ausrechnen/index.html
