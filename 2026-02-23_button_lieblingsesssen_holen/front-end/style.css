@@ -1,0 +1,25 @@
+div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    height: 70vh;
+    width: 100%;
+}
+
+div:first-of-type {
+    height: 30vh;
+}
+
+
+div table {
+    margin: 2%;
+    height: 50vh;
+    width: fit-content;
+}
+
+body {
+    margin: 0px;
+    border: 0;
+    padding: 0;
+}
