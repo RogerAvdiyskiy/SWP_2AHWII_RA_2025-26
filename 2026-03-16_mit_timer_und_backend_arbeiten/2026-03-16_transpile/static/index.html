@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet"
+        href="style.css">
+  <script type="importmap">
+  {
+    "imports": {
+      "ms": "https://cdn.jsdelivr.net/npm/ms@2.1.3/+esm"
+    }
+  }
+  </script>
+  <script type="module"
+          src="script.ts"></script>
+  <title>essen</title>
+</head>
+
+<body>
+  <h1>Essensliste</h1>
+  <button id="hole-essen">Hole Essen</button>
+  <button id="loesche-essen">Lösche Essen</button>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Essen</th>
+      </tr>
+    </thead>
+    <tbody id="tabelle"></tbody>
+  </table>
+  <h2>Millisekunden Umwandler</h2>
+  <input type="text" placeholder="Expl. : 2 days, 1 year, 2 months">
+  <button id="umwandeln">Umwandeln</button>
+  <p id="ergebnis"></p>
+</body>
+
+</html>
