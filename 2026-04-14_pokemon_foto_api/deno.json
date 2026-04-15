@@ -1,0 +1,12 @@
+{
+    "tasks": {
+        "dev": "deno run -A --unstable-bundle --watch main.ts",
+        "pokemon": "deno run -A download_pokemon.ts"
+    },
+    "imports": {
+        "hono": "jsr:@hono/hono@^4.12.8"
+    },
+    "fmt": {
+        "indentWidth": 4
+    }
+}
