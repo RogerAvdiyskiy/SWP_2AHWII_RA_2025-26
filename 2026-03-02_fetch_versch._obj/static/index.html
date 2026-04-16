@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+    <title>Essensliste</title>
+</head>
+<body>
+    <div class="container">
+        <h1>🍽️ Essensliste</h1>
+        
+        <div class="controls">
+            <button id="loadBtn" onclick="holeEssen()">Hole Essen</button>
+            <button id="clearBtn" onclick="loescheEssen()">Lösche Liste</button>
+            <input type="text" id="searchInput" placeholder="Suche nach Name oder Essen..." onkeyup="filterTable()">
+        </div>
+
+        <div id="status" class="status"></div>
+
+        <div class="stats" id="stats"></div>
+
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th onclick="sortTable(0)">Name ↕</th>
+                        <th onclick="sortTable(1)">Essen ↕</th>
+                    </tr>
+                </thead>
+                <tbody id="tabelle"></tbody>
+            </table>
+        </div>
+
+        <div id="errorMessage" class="error"></div>
+    </div>
+</body>
+</html>

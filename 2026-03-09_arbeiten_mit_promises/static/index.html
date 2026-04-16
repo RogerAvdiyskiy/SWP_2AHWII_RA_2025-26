@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pizza-Service</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { 
+            font-family: 'Segoe UI', Tahoma, sans-serif; 
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            min-height: 100vh; 
+            padding: 20px;
+            color: #fff;
+        }
+        .container { max-width: 600px; margin: 0 auto; }
+        h1 { text-align: center; margin-bottom: 30px; color: #f39c12; }
+        .controls { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-bottom: 20px; }
+        button {
+            padding: 12px 24px;
+            background: #e74c3c;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.3s;
+        }
+        button:hover { background: #c0392b; transform: scale(1.05); }
+        button:disabled { opacity: 0.6; cursor: not-allowed; }
+        select {
+            padding: 12px 16px;
+            border-radius: 8px;
+            border: 2px solid #f39c12;
+            background: #1a1a2e;
+            color: #fff;
+            font-size: 14px;
+        }
+        #log {
+            background: #0d1117;
+            border-radius: 12px;
+            padding: 20px;
+            max-height: 400px;
+            overflow-y: auto;
+            font-family: 'Consolas', monospace;
+            font-size: 13px;
+            line-height: 1.8;
+        }
+        .log-entry { border-bottom: 1px solid #21262d; padding: 8px 0; }
+        .log-entry.success { color: #3fb950; }
+        .log-entry.error { color: #f85149; }
+        .log-entry.info { color: #58a6ff; }
+        .timestamp { color: #6e7681; margin-right: 10px; }
+        #status {
+            text-align: center;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            font-weight: bold;
+        }
+        .status-ready { background: #238636; }
+        .status-error { background: #da3633; }
+        .status-loading { background: #9e6a03; animation: pulse 1s infinite; }
+        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🍕 Pizza-Service</h1>
+        <div id="status" class="status-ready">Ofen ist bereit!</div>
+        <div class="controls">
+            <select id="pizzaSelect">
+                <option value="Margherita">Margherita</option>
+                <option value="Pepperoni">Pepperoni</option>
+                <option value="Quattro Formaggi">Quattro Formaggi</option>
+                <option value="Prosciutto">Prosciutto</option>
+            </select>
+            <button id="bestellenBtn" onclick="bestellePizza()">Bestellen</button>
+            <button onclick="toggleOven()">Ofen umschalten</button>
+            <button onclick="clearLog()">Log löschen</button>
+        </div>
+        <div id="log"></div>
+    </div>
+    <script>
+        let ovenHot = true;
+        const logEl = document.getElementById('log');
+        const statusEl = document.getElementById('status');
+        const bestellenBtn = document.getElementById('bestellenBtn');
+
+        function log(msg, type = 'info') {
+            const entry = document.createElement('div');
+            entry.className = `log-entry ${type}`;
+            const time = new Date().toLocaleTimeString();
+            entry.innerHTML = `<span class="timestamp">[${time}]</span> ${msg}`;
+            logEl.appendChild(entry);
+            logEl.scrollTop = logEl.scrollHeight;
+        }
+
+        function setStatus(text, cls) {
+            statusEl.textContent = text;
+            statusEl.className = cls;
+        }
+
+        function toggleOven() {
+            ovenHot = !ovenHot;
+            if (ovenHot) {
+                setStatus('Ofen ist bereit!', 'status-ready');
+                log('Ofen wurde eingeschaltet', 'info');
+            } else {
+                setStatus('Ofen ist kalt/defekt!', 'status-error');
+                log('Ofen wurde ausgeschaltet', 'error');
+            }
+        }
+
+        function clearLog() {
+            logEl.innerHTML = '';
+            log('Log gelöscht', 'info');
+        }
+
+        function checkOven() {
+            return new Promise((resolve, reject) => {
+                log('Prüfe Ofenstatus...', 'info');
+                setTimeout(() => {
+                    if (ovenHot) {
+                        resolve({ success: true, message: 'Ofen ist bereit!' });
+                    } else {
+                        reject({ success: false, message: 'Ofen ist defekt.' });
+                    }
+                }, 300);
+            });
+        }
+
+        function bakePizza(pizzaName) {
+            return new Promise((resolve, reject) => {
+                log(`Backe Pizza: ${pizzaName}...`, 'info');
+                setTimeout(() => {
+                    if (!pizzaName || pizzaName.trim() === '') {
+                        reject('Fehler: Keine Pizza ausgewählt.');
+                    } else {
+                        resolve(`Pizza ${pizzaName} ist fertig gebacken!`);
+                    }
+                }, 1000);
+            });
+        }
+
+        function bestellePizza() {
+            const pizza = document.getElementById('pizzaSelect').value;
+            bestellenBtn.disabled = true;
+            setStatus('Bestellung läuft...', 'status-loading');
+            log(`Starte Bestellung für: ${pizza}`, 'info');
+
+            checkOven()
+                .then((result) => {
+                    log(result.message, 'success');
+                    return bakePizza(pizza);
+                })
+                .then((msg) => {
+                    log(msg, 'success');
+                    log('✅ Bestellung erfolgreich!', 'success');
+                    setStatus('Bestellung fertig!', 'status-ready');
+                })
+                .catch((err) => {
+                    if (typeof err === 'object' && err.message) {
+                        log(`❌ ${err.message}`, 'error');
+                        setStatus('Ofen nicht verfügbar!', 'status-error');
+                    } else {
+                        log(`❌ Pizza-Bestellung gescheitert: ${err}`, 'error');
+                        setStatus('Bestellung fehlgeschlagen!', 'status-error');
+                    }
+                })
+                .finally(() => {
+                    bestellenBtn.disabled = false;
+                });
+        }
+
+        log('Pizza-Service bereit', 'info');
+    </script>
+</body>
+</html>
