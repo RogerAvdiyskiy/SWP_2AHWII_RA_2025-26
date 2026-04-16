@@ -1,5 +1,5 @@
-GET http://localhost:8000/script.ts
+GET http://localhost:62571/essen
 ###
-GET http://localhost:8000/essen
+GET http://localhost:62571/index.html
 ###
-GET http://localhost:8000/hallo
+GET http://localhost:62571/script.js

@@ -1,73 +1,234 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
 body {
-  font-family: Arial, sans-serif;
-  background-color: #c2dffb;
-  text-align: center;
+    font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    padding: 20px;
 }
 
-/* Titel */
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    background: white;
+    border-radius: 16px;
+    padding: 30px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
 h1 {
-  margin-top: 30px;
+    text-align: center;
+    color: #2c3e50;
+    margin-bottom: 20px;
 }
 
-/* Button */
+h2 {
+    color: #34495e;
+    margin-top: 30px;
+    margin-bottom: 15px;
+    border-bottom: 2px solid #667eea;
+    padding-bottom: 10px;
+}
+
+.status-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.status {
+    font-weight: 600;
+}
+
+.status.loading {
+    color: #f39c12;
+}
+
+.status.success {
+    color: #27ae60;
+}
+
+.status.error {
+    color: #e74c3c;
+}
+
+.time-info {
+    color: #7f8c8d;
+    font-size: 14px;
+}
+
+.load-count {
+    color: #95a5a6;
+    font-size: 13px;
+}
+
+.controls {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+}
+
 button {
-  margin: 20px auto;
-  padding: 10px 18px;
-  background-color: #10253a;
-  color: rgb(255, 255, 255);
-  border: none;
-  border-radius: 8px;     /* ← runde Ecken */
-  cursor: pointer;
-  font-size: 14px;
+    padding: 12px 24px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    transition: all 0.3s ease;
 }
 
 button:hover {
-  background-color: #34495e;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
 }
 
-/* Tabelle */
+button:active {
+    transform: translateY(0);
+}
+
+#auto-refresh {
+    background: #27ae60;
+}
+
+#auto-refresh:hover {
+    background: #219a52;
+}
+
+.table-wrapper {
+    overflow-x: auto;
+}
+
 table {
-  margin: 20px auto;
-  width: 60%;
-  border-collapse: collapse;
-  background-color: white;
-  border-radius: 10px;    /* ← runde Ecken */
-  overflow: hidden;       /* wichtig für Rundung */
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1); /* leichter Schatten */
+    margin: 0 auto;
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
-/* Kopf */
+thead {
+    background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+}
+
 th {
-  background-color: #2c3e50;
-  color: white;
-  padding: 12px;
+    color: white;
+    padding: 15px 20px;
+    text-align: left;
+    font-weight: 600;
 }
 
-/* Zellen */
 td {
-  padding: 10px;
+    padding: 12px 20px;
+    border-bottom: 1px solid #e9ecef;
 }
 
-/* Rahmen */
-th, td {
-  border-bottom: 1px solid #ddd;
+tbody tr {
+    transition: background 0.2s;
 }
 
-/* Hell/Dunkel Zeilen */
-tbody tr:nth-child(even) {
-  background-color: #f2f2f2;
-}
-
-tbody tr:nth-child(odd) {
-  background-color: #ffffff;
-}
-
-/* Hover Effekt */
 tbody tr:hover {
-  background-color: #e3e9ef;
+    background: #f8f9fa;
 }
 
-th:not(:last-child),
-td:not(:last-child) {
-  border-right: 1px solid #ddd;
+tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.ms-section {
+    margin-top: 40px;
+    padding: 25px;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    border-radius: 12px;
+}
+
+.ms-section p {
+    color: #7f8c8d;
+    margin-bottom: 15px;
+}
+
+.ms-controls {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 15px;
+}
+
+#ms-input {
+    padding: 12px 16px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    font-size: 14px;
+    width: 250px;
+    transition: border-color 0.3s;
+}
+
+#ms-input:focus {
+    outline: none;
+    border-color: #667eea;
+}
+
+.ergebnis {
+    font-size: 18px;
+    font-weight: bold;
+    color: #2c3e50;
+    padding: 15px;
+    background: white;
+    border-radius: 8px;
+    min-height: 50px;
+}
+
+.beispiele {
+    margin-top: 15px;
+}
+
+.beispiel-btn {
+    padding: 8px 16px;
+    font-size: 12px;
+    margin: 5px;
+    background: #95a5a6;
+}
+
+.beispiel-btn:hover {
+    background: #7f8c8d;
+}
+
+@media (max-width: 600px) {
+    .container {
+        padding: 15px;
+    }
+    
+    .status-bar {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    #ms-input {
+        width: 100%;
+    }
+    
+    .ms-controls {
+        flex-direction: column;
+    }
+    
+    .ms-controls button {
+        width: 100%;
+    }
 }

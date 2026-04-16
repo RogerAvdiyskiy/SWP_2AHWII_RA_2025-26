@@ -3,49 +3,31 @@ import { serveStatic } from "hono/deno";
 import { Database } from "sqlite";
 
 const app = new Hono();
-const db = new Database("lieblingsessen.db");
+
+const dbPath = new URL("./lieblingsessen.db", import.meta.url).pathname;
+console.log("DB-Pfad:", dbPath);
+const db = new Database(dbPath);
+
 const isDev = true;
 
-app.get("/:path{.+\\.ts$}", async (c) => {
-     const filePath = `./src/${c.req.param("path")}`;
-    // prepend "src/"
-    console.log(`Transpiling ${filePath}`);
-
+app.get("/essen", (c: Context) => {
     try {
-        const result = await Deno.bundle({
-            entrypoints: [filePath],
-            platform: "browser",
-            minify: !isDev,
-            write: false, // Don't write to disk, keep in memory
-            format: "esm",
-        });
-        if (!result.success) throw new Error("Bundling failed");
+        const rows = db.prepare(`
+            SELECT person.name, essen.essen
+            FROM person
+            JOIN essen ON person.lieblingsessen = essen.id
+        `).all();
 
-        // Extract the bundled JS content from the in-memory result.
-        const jsFile = result.outputFiles?.find((f) => typeof f.text === "function");
-        const js = jsFile?.text();
-
-        if (!js) throw new Error("Bundling did not produce JavaScript output");
-
-        return c.body(js, 200, {
-            "Content-Type": "application/javascript; charset=utf-8",
-            "Cache-Control": isDev ? "no-cache" : "public, max-age=31536000",
-        });
-    } catch (err) {
-        const message = err instanceof Error ? err.message : String(err);
-        return c.text(`Transpilation Error: ${message}`, 500);
+        return c.json(rows);
+    } catch (e) {
+        const error = e instanceof Error ? e : new Error(String(e));
+        console.error("DB-Fehler:", error.message);
+        return c.json({ error: error.message }, 500);
     }
 });
 
 app.use("/*", serveStatic({ root: "./static" }));
 
-app.get("/essen", (c: Context) => {
-    const rows = db.prepare(`
-    SELECT name, essen
-    FROM dummy;
-  `).all();
-
-    return c.json(rows);
-});
-
-Deno.serve(app.fetch);
+const server = Deno.serve({ port: 0 }, app.fetch);
+console.log(`Server läuft auf Port ${server.addr.port}`);
+console.log(`Öffne http://localhost:${server.addr.port}`);
