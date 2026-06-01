@@ -46,9 +46,9 @@
 // console:      both
 // Buffer:       node only
 // setTimeout:   both
-// fetch:        both
+// fetch:        both (available in modern Node.js)
 //
-
+//
 // --- 1b) Eigene Eigenschaft typisiert hinzufügen ---
 //
 // Erweitere globalThis um eine typisierte Eigenschaft appConfig.
@@ -57,17 +57,25 @@
 //
 // Hinweis: In Node.js gibt es kein window — warum funktioniert globalThis
 // trotzdem universell?
+//
+// Antwort: globalThis ist ein ES2020-Standard, der auf jede Umgebung 
+// (Browser, Node, Workers) abstrahiert und das jeweilige globale Objekt anspricht.
 
 interface AppConfig {
   apiUrl: string;
   maxRetries: number;
   debug: boolean;
-  
 }
 
-// TODO: Declaration Merging — erweitere das globalThis-Interface
+declare global {
+  var appConfig: AppConfig;
+}
 
-// TODO: Weise globalThis.appConfig einen Wert zu
+globalThis.appConfig = { 
+  apiUrl: "https://api.example.com", 
+  maxRetries: 3, 
+  debug: true 
+};
 
 // --- 1c) Typ-Sicherheit prüfen ---
 //
@@ -80,8 +88,14 @@ interface AppConfig {
 // globalThis.appConfig = { apiUrl: "https://api.example.com" }; // Fehler!
 //
 // Was fehlt? Korrigiere den Code hier:
+//
+// Antwort: Es fehlen die Pflichtfelder maxRetries und debug aus dem Interface.
 
-// TODO: Korrigierte Version
+globalThis.appConfig = { 
+  apiUrl: "https://api.example.com", 
+  maxRetries: 5, 
+  debug: false 
+};
 
 // --- 1d) Vorsicht vor any ---
 //
@@ -92,7 +106,10 @@ interface AppConfig {
 // Welche Vorteile bietet die korrekte Typisierung über Interface-Merging
 // gegenüber any?
 //
-// Antwort:
+// Antwort: 'any' schaltet die Typprüfung aus. Man verliert Autovervollständigung,
+// Typsicherheit bei Zuweisungen und die Fähigkeit des Compilers, Fehler zu finden.
+// Interface-Merging hingegen bietet volle Typsicherheit und Dokumentation.
+
 
 // ============================================================================
 // Aufgabe 2: Exception im Promise-Executor
@@ -103,9 +120,13 @@ interface AppConfig {
 // Notiere VOR dem Ausführen, was du erwartest, und erkläre dein Ergebnis.
 //
 // Erwartung:
-// 1. Reihenfolge der Ausgaben:
-// 2. Warum führt der throw nicht zum Absturz?
-// 3. Was passiert mit dem Error-Objekt intern?
+// 1. Reihenfolge der Ausgaben: 
+//    - "Nach Promise-Konstruktion"
+//    - "Fehler abgefangen: Boom im Executor!"
+// 2. Warum führt der throw nicht zum Absturz? 
+//    Der Promise-Konstruktor fängt synchrone Exceptions im Executor automatisch ab.
+// 3. Was passiert mit dem Error-Objekt intern? 
+//    Es wird als Grund (reason) für die Ablehnung (rejection) des Promises verwendet.
 
 const p2a = new Promise<string>((resolve, reject) => {
   throw new Error("Boom im Executor!");
@@ -122,7 +143,7 @@ console.log("Nach Promise-Konstruktion");
 //
 // Vergleiche die folgenden zwei Varianten. Sind sie äquivalent? Begründe.
 // Teste beide mit .catch().
-
+//
 // Variante A
 const pA = new Promise<string>((resolve, reject) => {
   throw new Error("Fehler A");
@@ -134,7 +155,9 @@ const pB = new Promise<string>((resolve, reject) => {
 });
 
 // TODO: Teste beide und notiere ob es Unterschiede gibt
-// Antwort:
+// Antwort: Ja, sie sind funktional äquivalent. Beides führt zu einem rejected Promise.
+// Der throw ist syntaktischer Zucker für reject(), sofern er im Executor-Kontext auftritt.
+
 
 // ============================================================================
 // Aufgabe 3: Throw nach resolve
@@ -142,9 +165,12 @@ const pB = new Promise<string>((resolve, reject) => {
 
 // --- 3a) Was passiert hier? ---
 //
-// 1. Wird das Promise fulfilled oder rejected?
-// 2. Was passiert mit dem throw?
-// 3. Wird die Error-Nachricht irgendwo sichtbar?
+// 1. Wird das Promise fulfilled oder rejected? 
+//    Fulfilled.
+// 2. Was passiert mit dem throw? 
+//    Er wird ignoriert, da das Promise bereits settled ist.
+// 3. Wird die Error-Nachricht irgendwo sichtbar? 
+//    Nein.
 
 const p3a = new Promise<string>((resolve) => {
   resolve("fertig");
@@ -152,17 +178,20 @@ const p3a = new Promise<string>((resolve) => {
 });
 
 // TODO: Teste und notiere deine Beobachtung
+// Beobachtung: Das Promise wird erfolgreich mit "fertig" aufgelöst, der Throw hat keine Auswirkung.
 
 // --- 3b) Die umgekehrte Reihenfolge ---
 //
 // Warum hat resolve nach reject keine Wirkung mehr? Welche Regel gilt hier?
-
-const p3b = new Promise<string>((resolve, reject) => {
-  reject(new Error("Abgelehnt"));
-  resolve("doch noch fertig"); // Wird das ignoriert?
-});
-
-// Antwort:
+//
+// const p3b = new Promise<string>((resolve, reject) => {
+//   reject(new Error("Abgelehnt"));
+//   resolve("doch noch fertig"); // Wird das ignoriert?
+// });
+//
+// Antwort: Promises sind "immutable" once settled. Sobald resolve() oder reject() 
+// einmal erfolgreich aufgerufen wurden, ist der Zustand fixiert. Folgende Aufrufe 
+// werden ignoriert.
 
 // ============================================================================
 // Aufgabe 4: Synchroner Code im Executor
@@ -172,6 +201,10 @@ const p3b = new Promise<string>((resolve, reject) => {
 //
 // Wird der Fehler in .catch() abgefangen? Erkläre, warum der
 // Promise-Konstruktor hier wie ein try/catch wirkt.
+//
+// Antwort: Ja, er wird abgefangen. Der Promise-Konstruktor umschließt den Executor 
+// intern mit einem try-catch-Block. Jede synchrone Exception im Executor 
+// löst automatisch einen Aufruf von reject() aus.
 
 function loadConfig(): string {
   throw new Error("Konfiguration nicht gefunden");
@@ -186,7 +219,36 @@ p4a.catch((err) => {
   console.log("Gefangen in .catch():", (err as Error).message);
 });
 
-// Antwort:
+// --- 4b) Manuell vs. automatisch ---
+//
+// Schreibe zwei Versionen derselben Logik — einmal mit automatischer
+// Exception-Weiterleitung (throw) und einmal mit manueller try/catch + reject.
+//
+// function loadConfig2(): string {
+//   throw new Error("Konfiguration nicht gefunden");
+// }
+//
+// Version 1: Automatisch (throw)
+const p4b_v1 = new Promise<string>((resolve, reject) => {
+  const config = loadConfig2();
+  resolve(config);
+});
+
+// Version 2: Manuell (try/catch + reject)
+const p4b_v2 = new Promise<string>((resolve, reject) => {
+  try {
+    const config = loadConfig2();
+    resolve(config);
+  } catch (error) {
+    reject(error);
+  }
+});
+
+// Frage: Was ist der Vorteil der manuellen Variante?
+// Antwort: Man hat mehr Kontrolle. Man kann Fehler filtern, loggen, 
+// benutzerfreundlichere Fehlermeldungen erstellen oder spezifische 
+// Recovery-Logik implementieren, bevor das Promise endgültig abgelehnt wird.
+
 
 // --- 4b) Manuell vs. automatisch ---
 //
@@ -219,7 +281,7 @@ const p4b_v2 = new Promise<string>((resolve, reject) => {
 // Erkläre den Zusammenhang: Ein throw in einer async-Funktion entspricht
 // einem reject() im zurückgegebenen Promise.
 // Zeige dies durch Umschreiben in eine nicht-async-Variante.
-
+//
 async function fetchData(): Promise<string> {
   throw new Error("Netzwerkfehler");
 }
@@ -228,18 +290,26 @@ fetchData()
   .then((data) => console.log("Daten:", data))
   .catch((err) => console.log("Fehler:", (err as Error).message));
 
-// TODO: Schreibe fetchData als nicht-async-Variante (mit new Promise)
+// Nicht-async-Variante:
+function fetchDataNonAsync(): Promise<string> {
+  return new Promise((resolve, reject) => {
+    reject(new Error("Netzwerkfehler"));
+  });
+}
 
 // --- 5b) Throw nach return in async ---
 //
 // Warum ist der Throw unreachable? Was passiert zur Laufzeit?
-
+//
 async function confusing(): Promise<string> {
   return "Ergebnis";
   throw new Error("Unreachable");
 }
 
-// Antwort:
+// Antwort: 'return' beendet die Ausführung der Funktion sofort. 
+// Der Code danach wird niemals erreicht. Es passiert zur Laufzeit nichts, 
+// der Throw wird einfach ignoriert.
+
 
 // ============================================================================
 // Aufgabe 6: Zusammengesetzte Aufgabe — withRetry
@@ -252,18 +322,45 @@ async function confusing(): Promise<string> {
 //    (korrekt typisiert!)
 // 4. Nach maxRetries erfolglosen Versuchen die letzte Exception weiterwirft
 // 5. Sowohl throw-Exceptions als auch reject-Fälle behandelt
+//
+declare global {
+  var __retryCount: number;
+}
 
-// TODO: Erweitere globalThis um __retryCount
-// declare global { ... }
-
-// TODO: Implementiere withRetry
-function withRetry<T>(
+async function withRetry<T>(
   fn: () => Promise<T>,
   maxRetries: number = 3
 ): Promise<T> {
-  // TODO: Implementierung
-  throw new Error("Nicht implementiert");
+  let attempts = 0;
+  while (true) {
+    try {
+      attempts++;
+      globalThis.__retryCount = attempts;
+      return await fn();
+    } catch (error) {
+      if (attempts >= maxRetries) {
+        throw error;
+      }
+    }
+  }
 }
+
+// Test:
+async function testWithRetry() {
+  let attempts = 0;
+
+  const result = await withRetry(async () => {
+    attempts++;
+    if (attempts < 3) {
+      throw new Error(`Versuch ${attempts} fehlgeschlagen`);
+    }
+    return "Erfolg!";
+  }, 5);
+
+  console.log(result); // Erwartet: "Erfolg!"
+  console.log(globalThis.__retryCount); // Erwartet: 3
+}
+
 
 // Test:
 async function testWithRetry() {
@@ -297,4 +394,8 @@ async function testWithRetry() {
 // Warum landet dieser Fehler NICHT in .catch()? Wie unterscheidet sich
 // ein throw in setTimeout von einem throw direkt im Executor?
 //
-// Antwort:
+// Antwort: Der Throw im setTimeout geschieht asynchron in einem eigenen Call-Stack 
+// (Event Loop Tick), nachdem der Promise-Executor bereits fertig ausgeführt wurde. 
+// Der Promise-Konstruktor fängt nur SYNCHRONE Exceptions im Executor ab. 
+// Da der Fehler außerhalb dieses Kontexts auftritt, landet er nicht im Promise 
+// und führt stattdessen zu einem "Uncaught Error", der die Anwendung abstürzen lassen kann.
