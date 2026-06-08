@@ -1,5 +1,4 @@
-import { holeEssen, loescheEssen, convertMs } from "./essen.ts";
-import ms from "ms";
+import { holeEssen, loescheEssen, convertMs, toggleAutoRefresh } from "./essen.ts";
 
 type EssenGlobals = typeof globalThis & {
     holeEssen: typeof holeEssen;
@@ -13,6 +12,7 @@ globals.loescheEssen = loescheEssen;
 
 document.getElementById("hole-essen")?.addEventListener("click", holeEssen);
 document.getElementById("loesche-essen")?.addEventListener("click", loescheEssen);
+document.getElementById("auto-refresh")?.addEventListener("click", toggleAutoRefresh);
 
 document.getElementById("umwandeln")?.addEventListener("click", () => {
     const input = document.getElementById("ms-input") as HTMLInputElement;
@@ -34,9 +34,9 @@ const msBeispiele = [
 
 const beispieleContainer = document.getElementById("ms-beispiele");
 if (beispieleContainer) {
-    beispieleContainer.innerHTML = "<strong>Beispiele:</strong> " + 
+    beispieleContainer.innerHTML = "<strong>Beispiele:</strong> " +
         msBeispiele.map(b => `<button class="beispiel-btn" data-wert="${b}">${b}</button>`).join(" ");
-    
+
     beispieleContainer.querySelectorAll(".beispiel-btn").forEach(btn => {
         btn.addEventListener("click", () => {
             const input = document.getElementById("ms-input") as HTMLInputElement;
@@ -47,4 +47,4 @@ if (beispieleContainer) {
     });
 }
 
-console.log("Script geladen. ms() Version:", ms("1 second"));
+console.log("Script geladen.");

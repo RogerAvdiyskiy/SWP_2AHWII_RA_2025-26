@@ -10,11 +10,11 @@
 <body>
     <div class="container">
         <h1>🍽️ Essensliste</h1>
-        
+
         <div class="controls">
-            <button id="loadBtn" onclick="holeEssen()">Hole Essen</button>
-            <button id="clearBtn" onclick="loescheEssen()">Lösche Liste</button>
-            <input type="text" id="searchInput" placeholder="Suche nach Name oder Essen..." onkeyup="filterTable()">
+            <button id="loadBtn">Hole Essen</button>
+            <button id="clearBtn">Lösche Liste</button>
+            <input type="text" id="searchInput" placeholder="Suche nach Name oder Essen...">
         </div>
 
         <div id="status" class="status"></div>
@@ -25,8 +25,8 @@
             <table>
                 <thead>
                     <tr>
-                        <th onclick="sortTable(0)">Name ↕</th>
-                        <th onclick="sortTable(1)">Essen ↕</th>
+                        <th>Name ↕</th>
+                        <th>Essen ↕</th>
                     </tr>
                 </thead>
                 <tbody id="tabelle"></tbody>

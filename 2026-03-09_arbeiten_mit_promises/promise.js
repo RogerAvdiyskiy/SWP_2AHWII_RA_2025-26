@@ -2,9 +2,10 @@
 // Hausübung: Der Pizza-Service (Promise-Kette)
 // ============================================
 
+let isOvenHot = true;
+
 function checkOven() {
     return new Promise((resolve, reject) => {
-        const isOvenHot = true;
         if (isOvenHot) {
             resolve({ success: true, message: "Ofen ist bereit!" });
         } else {
@@ -16,7 +17,7 @@ function checkOven() {
 function bakePizza(pizzaName) {
     return new Promise((resolve, reject) => {
         if (!pizzaName || pizzaName.trim() === "") {
-            reject("Fehler: Keine Pizza ausgewählt.");
+            reject({ success: false, message: "Fehler: Keine Pizza ausgewählt." });
         } else {
             resolve("Pizza " + pizzaName + " ist fertig gebacken!");
         }

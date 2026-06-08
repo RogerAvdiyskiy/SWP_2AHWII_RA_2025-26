@@ -6,7 +6,8 @@ async function holeEssen() {
     const status = document.getElementById('status');
     const errorMsg = document.getElementById('errorMessage');
     const stats = document.getElementById('stats');
-    
+    const tabelle = document.getElementById('tabelle');
+
     loadBtn.disabled = true;
     loadBtn.textContent = 'Lädt...';
     status.textContent = 'Daten werden geladen...';
@@ -15,7 +16,7 @@ async function holeEssen() {
 
     try {
         const response = await fetch('/essen');
-        
+
         if (!response.ok) {
             throw new Error(`HTTP Error: ${response.status}`);
         }
@@ -27,18 +28,21 @@ async function holeEssen() {
 
         const daten = await response.json();
         cachedData = daten;
-        
+
         zeigeDaten(daten);
-        
+
         status.textContent = `${daten.length} Einträge geladen`;
         status.className = 'status success';
         updateStats(daten);
-        
+
     } catch (error) {
         status.textContent = 'Fehler beim Laden';
         status.className = 'status error';
         errorMsg.textContent = `Fehler: ${error.message}`;
         console.error('Fetch-Fehler:', error);
+        cachedData = [];
+        tabelle.innerHTML = '';
+        stats.innerHTML = '';
     } finally {
         loadBtn.disabled = false;
         loadBtn.textContent = 'Hole Essen';
@@ -47,7 +51,7 @@ async function holeEssen() {
 
 function zeigeDaten(daten) {
     const tabelle = document.getElementById('tabelle');
-    
+
     if (!daten || daten.length === 0) {
         tabelle.innerHTML = '<tr><td colspan="2">Keine Daten vorhanden</td></tr>';
         return;
@@ -71,7 +75,7 @@ function loescheEssen() {
     const tabelle = document.getElementById('tabelle');
     const status = document.getElementById('status');
     const stats = document.getElementById('stats');
-    
+
     tabelle.innerHTML = '';
     status.textContent = 'Liste gelöscht';
     status.className = 'status';
@@ -89,7 +93,7 @@ function filterTable() {
         const name = row.getAttribute('data-name') || '';
         const essen = row.getAttribute('data-essen') || '';
         const matches = name.includes(filter) || essen.includes(filter);
-        
+
         row.style.display = matches ? '' : 'none';
         if (matches) visibleCount++;
     });
@@ -103,12 +107,12 @@ function filterTable() {
 function sortTable(columnIndex) {
     const direction = sortDirection[columnIndex];
     sortDirection[columnIndex] = !direction;
-    
+
     const sortedData = [...cachedData].sort((a, b) => {
         const key = columnIndex === 0 ? 'name' : 'essen';
         const valA = a[key].toLowerCase();
         const valB = b[key].toLowerCase();
-        
+
         if (valA < valB) return direction ? -1 : 1;
         if (valA > valB) return direction ? 1 : -1;
         return 0;
@@ -120,20 +124,30 @@ function sortTable(columnIndex) {
 function updateStats(daten) {
     const stats = document.getElementById('stats');
     const essenCounts = {};
-    
+
     daten.forEach(eintrag => {
         essenCounts[eintrag.essen] = (essenCounts[eintrag.essen] || 0) + 1;
     });
 
-    const mostPopular = Object.entries(essenCounts)
-        .sort((a, b) => b[1] - a[1])[0];
+    const entries = Object.entries(essenCounts);
+    const mostPopular = entries.length > 0
+        ? entries.sort((a, b) => b[1] - a[1])[0]
+        : null;
 
     stats.innerHTML = `
         <div class="stat-item">📊 ${daten.length} Personen</div>
-        <div class="stat-item">🍕 ${Object.keys(essenCounts).length} verschiedene Gerichte</div>
+        <div class="stat-item">🍕 ${entries.length} verschiedene Gerichte</div>
         <div class="stat-item">⭐ Beliebtestes: ${mostPopular ? mostPopular[0] + ` (${mostPopular[1]}x)` : 'N/A'}</div>
     `;
 }
+
+document.getElementById('loadBtn').addEventListener('click', holeEssen);
+document.getElementById('clearBtn').addEventListener('click', loescheEssen);
+document.getElementById('searchInput').addEventListener('keyup', filterTable);
+
+document.querySelectorAll('th').forEach((th, index) => {
+    th.addEventListener('click', () => sortTable(index));
+});
 
 window.addEventListener('error', (event) => {
     console.error('Globaler Fehler:', event.error);

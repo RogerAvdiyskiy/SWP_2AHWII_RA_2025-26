@@ -9,13 +9,13 @@
 <body>
     <div class="container">
         <h1>Essensliste</h1>
-        
+
         <div class="status-bar">
             <span id="loading-status" class="status"></span>
             <span id="last-load-time" class="time-info"></span>
             <span id="load-count" class="load-count"></span>
         </div>
-        
+
         <div class="controls">
             <button id="hole-essen">Essen laden</button>
             <button id="loesche-essen">Liste leeren</button>
@@ -44,7 +44,7 @@
             <p id="ergebnis" class="ergebnis"></p>
             <div id="ms-beispiele" class="beispiele"></div>
         </div>
-        
+
         <div class="info-section">
             <h3>Über ms()</h3>
             <p>Das <code>ms()</code> Paket konvertiert zwischen Zeitstrings und Millisekunden.</p>
@@ -56,21 +56,5 @@
     </div>
 
     <script type="module" src="script.js"></script>
-    
-    <script>
-        let autoRefreshInterval = null;
-        
-        document.getElementById("auto-refresh").addEventListener("click", function() {
-            if (autoRefreshInterval) {
-                clearInterval(autoRefreshInterval);
-                autoRefreshInterval = null;
-                this.textContent = "Auto-Refresh: AUS";
-            } else {
-                window.holeEssen();
-                autoRefreshInterval = setInterval(window.holeEssen, 30000);
-                this.textContent = "Auto-Refresh: AN (30s)";
-            }
-        });
-    </script>
 </body>
 </html>

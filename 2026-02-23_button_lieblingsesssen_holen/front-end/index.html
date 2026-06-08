@@ -8,22 +8,19 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div>
-        <button onclick="createLieblingsessenTable()">Get Lieblinge</button>
+    <div class="button-container">
+        <button id="loadBtn">Get Lieblinge</button>
     </div>
-    <div>
-        <table id="tabelle-container">
-
-            <tr>
-                <td>
-                    Name
-                </td>
-                <td>
-                    Lieblingsessen
-                </td>
-            </tr>
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Lieblingsessen</th>
+                </tr>
+            </thead>
+            <tbody id="tabelle-container"></tbody>
         </table>
-
     </div>
 </body>
 </html>

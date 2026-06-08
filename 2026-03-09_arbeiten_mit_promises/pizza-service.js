@@ -1,4 +1,4 @@
-const isOvenHot = true;
+let isOvenHot = true;
 const orderHistory = [];
 
 function log(message, type = "info") {
@@ -30,7 +30,7 @@ function bakePizza(pizzaName) {
     return new Promise((resolve, reject) => {
         log(`Bestelle Pizza: ${pizzaName}...`);
         if (!pizzaName || pizzaName.trim() === "") {
-            reject("Fehler: Keine Pizza ausgewählt.");
+            reject({ success: false, message: "Fehler: Keine Pizza ausgewählt." });
             return;
         }
         const bakingTime = Math.floor(Math.random() * 2000) + 1000;
@@ -41,14 +41,12 @@ function bakePizza(pizzaName) {
 }
 
 function deliverPizza(pizzaMsg) {
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve) => {
         log("Lieferung wird vorbereitet...", "info");
+        const deliveryTime = Math.floor(Math.random() * 3000) + 2000;
         setTimeout(() => {
-            const deliveryTime = Math.floor(Math.random() * 3000) + 2000;
-            setTimeout(() => {
-                resolve(`${pizzaMsg} | Lieferung abgeschlossen!`);
-            }, deliveryTime);
-        }, 500);
+            resolve(`${pizzaMsg} | Lieferung abgeschlossen!`);
+        }, deliveryTime);
     });
 }
 
@@ -62,7 +60,7 @@ function updateOrderDisplay() {
 
 function main() {
     log("=== Pizza-Service gestartet ===", "info");
-    
+
     checkOven()
         .then((result) => {
             log(result.message, "success");
@@ -79,7 +77,7 @@ function main() {
         })
         .catch((err) => {
             if (typeof err === "object" && err.message) {
-                log(`Ofen-Fehler: ${err.message}`, "error");
+                log(`Fehler: ${err.message}`, "error");
             } else {
                 log(`Pizza-Bestellung gescheitert: ${err}`, "error");
             }
@@ -92,17 +90,19 @@ function testeSzenarien() {
     console.log("\n" + "=".repeat(50));
     console.log("TESTE ALLE SZENARIEN");
     console.log("=".repeat(50) + "\n");
-    
+
     console.log("--- Szenario 1: Ofen kalt ---");
-    const kalterOfenBackup = isOvenHot;
-    Object.defineProperty(globalThis, 'isOvenHot', { get: () => false, configurable: true });
-    
+    isOvenHot = false;
+
     checkOven()
-        .then((result) => {
+        .then(() => {
             console.log("Unerwartet: Ofen ist heiss");
         })
         .catch((err) => {
             console.log("Erwartet fehlgeschlagen:", err.message);
+        })
+        .finally(() => {
+            isOvenHot = true;
         });
 }
 

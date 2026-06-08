@@ -1,25 +1,40 @@
-const API_URL = "http://localhost:8000/lieblinge";
-
 async function createLieblingsessenTable() {
-    const response = await fetch(API_URL);
-    const data = await response.json();
-
+    const btn = document.getElementById("loadBtn");
     const tabelle_container = document.getElementById("tabelle-container");
 
-    data.forEach(personenDaten => {
-        const zeile = document.createElement("tr");
-        const datenFeldName = document.createElement("td");
-        const datenFeldLieblingsessen = document.createElement("td");
+    try {
+        btn.disabled = true;
+        btn.textContent = "Lädt...";
 
-        datenFeldName.textContent = personenDaten.name;
-        datenFeldLieblingsessen.textContent = personenDaten.essen;
-        
-        zeile.appendChild(datenFeldName);
-        zeile.appendChild(datenFeldLieblingsessen);
+        const response = await fetch("/lieblinge");
+        if (!response.ok) {
+            throw new Error(`HTTP-Fehler: ${response.status}`);
+        }
 
-        tabelle_container.appendChild(zeile);
+        const data = await response.json();
 
-    });
+        tabelle_container.innerHTML = "";
 
+        data.forEach(personenDaten => {
+            const zeile = document.createElement("tr");
+            const datenFeldName = document.createElement("td");
+            const datenFeldLieblingsessen = document.createElement("td");
 
+            datenFeldName.textContent = personenDaten.name;
+            datenFeldLieblingsessen.textContent = personenDaten.essen;
+
+            zeile.appendChild(datenFeldName);
+            zeile.appendChild(datenFeldLieblingsessen);
+
+            tabelle_container.appendChild(zeile);
+        });
+    } catch (error) {
+        console.error("Fehler:", error);
+        tabelle_container.innerHTML = `<tr><td colspan="2">Fehler: ${error.message}</td></tr>`;
+    } finally {
+        btn.disabled = false;
+        btn.textContent = "Get Lieblinge";
+    }
 }
+
+document.getElementById("loadBtn").addEventListener("click", createLieblingsessenTable);

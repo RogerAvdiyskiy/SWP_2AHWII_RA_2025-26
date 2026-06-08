@@ -6,10 +6,10 @@
     <title>Pizza-Service</title>
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { 
-            font-family: 'Segoe UI', Tahoma, sans-serif; 
+        body {
+            font-family: 'Segoe UI', Tahoma, sans-serif;
             background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-            min-height: 100vh; 
+            min-height: 100vh;
             padding: 20px;
             color: #fff;
         }
@@ -75,9 +75,9 @@
                 <option value="Quattro Formaggi">Quattro Formaggi</option>
                 <option value="Prosciutto">Prosciutto</option>
             </select>
-            <button id="bestellenBtn" onclick="bestellePizza()">Bestellen</button>
-            <button onclick="toggleOven()">Ofen umschalten</button>
-            <button onclick="clearLog()">Log löschen</button>
+            <button id="bestellenBtn">Bestellen</button>
+            <button id="toggleOvenBtn">Ofen umschalten</button>
+            <button id="clearLogBtn">Log löschen</button>
         </div>
         <div id="log"></div>
     </div>
@@ -91,7 +91,11 @@
             const entry = document.createElement('div');
             entry.className = `log-entry ${type}`;
             const time = new Date().toLocaleTimeString();
-            entry.innerHTML = `<span class="timestamp">[${time}]</span> ${msg}`;
+            const timeSpan = document.createElement('span');
+            timeSpan.className = 'timestamp';
+            timeSpan.textContent = `[${time}] `;
+            entry.appendChild(timeSpan);
+            entry.appendChild(document.createTextNode(msg));
             logEl.appendChild(entry);
             logEl.scrollTop = logEl.scrollHeight;
         }
@@ -135,7 +139,7 @@
                 log(`Backe Pizza: ${pizzaName}...`, 'info');
                 setTimeout(() => {
                     if (!pizzaName || pizzaName.trim() === '') {
-                        reject('Fehler: Keine Pizza ausgewählt.');
+                        reject({ success: false, message: 'Fehler: Keine Pizza ausgewählt.' });
                     } else {
                         resolve(`Pizza ${pizzaName} ist fertig gebacken!`);
                     }
@@ -156,15 +160,15 @@
                 })
                 .then((msg) => {
                     log(msg, 'success');
-                    log('✅ Bestellung erfolgreich!', 'success');
+                    log('Bestellung erfolgreich!', 'success');
                     setStatus('Bestellung fertig!', 'status-ready');
                 })
                 .catch((err) => {
                     if (typeof err === 'object' && err.message) {
-                        log(`❌ ${err.message}`, 'error');
+                        log(err.message, 'error');
                         setStatus('Ofen nicht verfügbar!', 'status-error');
                     } else {
-                        log(`❌ Pizza-Bestellung gescheitert: ${err}`, 'error');
+                        log(`Pizza-Bestellung gescheitert: ${err}`, 'error');
                         setStatus('Bestellung fehlgeschlagen!', 'status-error');
                     }
                 })
@@ -172,6 +176,10 @@
                     bestellenBtn.disabled = false;
                 });
         }
+
+        document.getElementById('bestellenBtn').addEventListener('click', bestellePizza);
+        document.getElementById('toggleOvenBtn').addEventListener('click', toggleOven);
+        document.getElementById('clearLogBtn').addEventListener('click', clearLog);
 
         log('Pizza-Service bereit', 'info');
     </script>
