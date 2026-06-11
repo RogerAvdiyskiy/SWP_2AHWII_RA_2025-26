@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Grid Experimente</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="grid-header">
+        <h1>CSS Grid Layouts</h1>
+        <p>Experimente mit grid-template-columns, grid-template-areas, auto-fit, minmax &amp; mehr</p>
+    </header>
+
+    <nav class="grid-nav">
+        <a href="#basic">Basic Grid</a>
+        <a href="#areas">Grid Areas</a>
+        <a href="#responsive">Responsive</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#dashboard">Dashboard</a>
+        <a href="#builder">Builder</a>
+    </nav>
+
+    <main class="grid-main">
+        <section id="basic">
+            <h2>1. Basic Grid</h2>
+            <p>Einfaches Grid mit <code>grid-template-columns</code></p>
+            <div class="grid-basic">
+                <div class="g-item" style="--c: #ff6b6b;">1</div>
+                <div class="g-item" style="--c: #feca57;">2</div>
+                <div class="g-item" style="--c: #48dbfb;">3</div>
+                <div class="g-item" style="--c: #ff9ff3;">4</div>
+                <div class="g-item" style="--c: #54a0ff;">5</div>
+                <div class="g-item" style="--c: #5f27cd;">6</div>
+            </div>
+        </section>
+
+        <section id="areas">
+            <h2>2. Grid Template Areas</h2>
+            <p>Layout mit <code>grid-template-areas</code> &mdash; Header, Sidebar, Content, Footer</p>
+            <div class="grid-areas">
+                <div class="ga header">Header</div>
+                <div class="ga sidebar">Sidebar</div>
+                <div class="ga content">Content<br><br>Hauptbereich mit flexibler Höhe</div>
+                <div class="ga footer">Footer</div>
+            </div>
+        </section>
+
+        <section id="responsive">
+            <h2>3. Responsives Grid</h2>
+            <p><code>auto-fit</code> + <code>minmax(250px, 1fr)</code> &rarr; passt sich automatisch an</p>
+            <div class="grid-responsive">
+                <div class="gr-item">Responsiv 1</div>
+                <div class="gr-item">Responsiv 2</div>
+                <div class="gr-item">Responsiv 3</div>
+                <div class="gr-item">Responsiv 4</div>
+                <div class="gr-item">Responsiv 5</div>
+                <div class="gr-item">Responsiv 6</div>
+                <div class="gr-item">Responsiv 7</div>
+                <div class="gr-item">Responsiv 8</div>
+            </div>
+        </section>
+
+        <section id="gallery">
+            <h2>4. Bildergalerie mit Grid</h2>
+            <p>Spanning über mehrere Spalten/Zeilen mit <code>grid-column</code> / <code>grid-row</code></p>
+            <div class="grid-gallery">
+                <div class="gal-item wide"> 📸 Breit</div>
+                <div class="gal-item tall"> 📸 Hoch</div>
+                <div class="gal-item"> 📸 </div>
+                <div class="gal-item big"> 📸 Groß</div>
+                <div class="gal-item"> 📸 </div>
+                <div class="gal-item tall"> 📸 Hoch</div>
+                <div class="gal-item wide"> 📸 Breit</div>
+                <div class="gal-item"> 📸 </div>
+                <div class="gal-item"> 📸 </div>
+            </div>
+        </section>
+
+        <section id="dashboard">
+            <h2>5. Dashboard-Layout</h2>
+            <p>Komplexes Layout mit <code>grid-column: span</code> und <code>gap</code></p>
+            <div class="grid-dashboard">
+                <div class="db-card db-header">📊 Übersicht</div>
+                <div class="db-card db-chart">📈 Chart</div>
+                <div class="db-card db-side">👤 User</div>
+                <div class="db-card db-table">📋 Daten</div>
+                <div class="db-card db-activity">⚡ Aktivität</div>
+                <div class="db-card db-tasks">✅ Aufgaben</div>
+            </div>
+        </section>
+
+        <section id="builder">
+            <h2>6. Interaktiver Grid-Builder</h2>
+            <p>Passe Spalten, Zeilen und Lücken an:</p>
+            <div class="builder-controls">
+                <label>Spalten: <span id="cols-val">3</span>
+                    <input type="range" id="cols-slider" min="1" max="6" value="3">
+                </label>
+                <label>Zeilen: <span id="rows-val">3</span>
+                    <input type="range" id="rows-slider" min="1" max="6" value="3">
+                </label>
+                <label>Gap: <span id="gap-val">12</span>px
+                    <input type="range" id="gap-slider" min="0" max="40" value="12">
+                </label>
+            </div>
+            <div id="builder-grid" class="builder-grid"></div>
+        </section>
+    </main>
+
+    <footer class="grid-footer">
+        <p>Hausübung vom 15. Dezember 2025 &ndash; CSS Grid</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

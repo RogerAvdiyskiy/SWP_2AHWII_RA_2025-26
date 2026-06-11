@@ -1,0 +1,300 @@
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    line-height: 1.6;
+    background: #0f0f23;
+    color: #e0e0e0;
+    display: grid;
+    grid-template-columns: 1fr minmax(0, 1100px) 1fr;
+    grid-template-rows: auto auto 1fr auto;
+    grid-template-areas:
+        ". header ."
+        ". nav ."
+        ". main ."
+        "footer footer footer";
+    gap: 20px;
+    padding: 20px;
+    min-height: 100vh;
+}
+
+.grid-header { grid-area: header; }
+.grid-nav { grid-area: nav; }
+.grid-main { grid-area: main; }
+.grid-footer { grid-area: footer; }
+
+code {
+    background: #1e1e3f;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    color: #feca57;
+}
+
+.grid-header {
+    text-align: center;
+    padding: 40px 20px;
+    background: linear-gradient(135deg, #1a1a3e 0%, #2d1b69 100%);
+    border: 1px solid #4a4a8a;
+    border-radius: 16px;
+}
+
+.grid-header h1 {
+    font-size: 2.5rem;
+    background: linear-gradient(90deg, #48dbfb, #ff9ff3, #feca57);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.grid-header p {
+    color: #a0a0c0;
+    margin-top: 10px;
+}
+
+.grid-nav {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 15px;
+    background: #1a1a3e;
+    border: 1px solid #3a3a6a;
+    border-radius: 12px;
+}
+
+.grid-nav a {
+    color: #a0a0c0;
+    text-decoration: none;
+    padding: 8px 16px;
+    border: 1px solid #3a3a6a;
+    border-radius: 8px;
+    transition: all 0.2s;
+}
+
+.grid-nav a:hover {
+    background: #2d1b69;
+    color: white;
+    border-color: #667eea;
+}
+
+section {
+    padding: 30px;
+    margin-bottom: 30px;
+    background: #1a1a3e;
+    border: 1px solid #3a3a6a;
+    border-radius: 16px;
+}
+
+section h2 {
+    margin-bottom: 15px;
+    color: #48dbfb;
+    font-size: 1.4rem;
+}
+
+section > p {
+    margin-bottom: 20px;
+    color: #a0a0c0;
+}
+
+/* 1. Basic Grid */
+.grid-basic {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 16px;
+}
+
+.g-item {
+    background: var(--c, #667eea);
+    padding: 30px;
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+    border-radius: 12px;
+    color: white;
+}
+
+/* 2. Grid Areas */
+.grid-areas {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    grid-template-rows: auto 1fr auto;
+    grid-template-areas:
+        "header header"
+        "sidebar content"
+        "footer footer";
+    gap: 12px;
+    min-height: 350px;
+}
+
+.ga {
+    padding: 20px;
+    border-radius: 12px;
+    color: white;
+    font-weight: bold;
+}
+
+.ga.header {
+    grid-area: header;
+    background: #54a0ff;
+}
+
+.ga.sidebar {
+    grid-area: sidebar;
+    background: #5f27cd;
+}
+
+.ga.content {
+    grid-area: content;
+    background: #1dd1a1;
+    color: #1a1a3e;
+}
+
+.ga.footer {
+    grid-area: footer;
+    background: #ff6b6b;
+}
+
+/* 3. Responsive Grid */
+.grid-responsive {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 16px;
+}
+
+.gr-item {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    padding: 30px;
+    text-align: center;
+    border-radius: 12px;
+    font-weight: bold;
+    color: white;
+}
+
+/* 4. Gallery Grid */
+.grid-gallery {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-rows: 120px;
+    gap: 12px;
+}
+
+.gal-item {
+    background: linear-gradient(135deg, #2d1b69, #667eea);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    font-size: 1.5rem;
+    color: white;
+    font-weight: bold;
+}
+
+.gal-item.wide {
+    grid-column: span 2;
+    background: linear-gradient(135deg, #e91e63, #ff6b6b);
+}
+
+.gal-item.tall {
+    grid-row: span 2;
+    background: linear-gradient(135deg, #4caf50, #1dd1a1);
+}
+
+.gal-item.big {
+    grid-column: span 2;
+    grid-row: span 2;
+    background: linear-gradient(135deg, #feca57, #ff9ff3);
+    font-size: 2rem;
+}
+
+/* 5. Dashboard Grid */
+.grid-dashboard {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    grid-template-rows: auto auto auto;
+    gap: 16px;
+}
+
+.db-card {
+    padding: 25px;
+    background: #0f0f23;
+    border: 1px solid #3a3a6a;
+    border-radius: 12px;
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+.db-header {
+    grid-column: 1 / -1;
+    background: linear-gradient(135deg, #1a1a3e, #2d1b69);
+    border-color: #667eea;
+}
+
+.db-chart {
+    grid-column: span 2;
+    background: #1e1e3f;
+}
+
+.db-side {
+    background: #2d1b69;
+}
+
+.db-table {
+    grid-column: span 2;
+}
+
+.db-activity {
+    background: #1e1e3f;
+}
+
+.db-tasks {
+    background: #1e1e3f;
+}
+
+/* 6. Grid Builder */
+.builder-controls {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+    padding: 20px;
+    background: #0f0f23;
+    border-radius: 12px;
+}
+
+.builder-controls label {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    font-weight: 600;
+}
+
+.builder-controls input[type="range"] {
+    width: 180px;
+}
+
+#builder-grid {
+    display: grid;
+    gap: 12px;
+}
+
+.builder-cell {
+    background: linear-gradient(135deg, #667eea, #5f27cd);
+    padding: 20px;
+    text-align: center;
+    border-radius: 8px;
+    color: white;
+    font-weight: bold;
+    font-size: 0.9rem;
+}
+
+.grid-footer {
+    text-align: center;
+    padding: 20px;
+    color: #636e72;
+    border-top: 1px solid #3a3a6a;
+}

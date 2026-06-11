@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Boxmodel kreativ</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>CSS Boxmodel – Kreative Anwendung</h1>
+        <p>Padding, Margin, Border, Border-Radius, Box-Shadow &amp; mehr</p>
+    </header>
+
+    <section class="intro">
+        <div class="box card">
+            <h2>Was ist das Boxmodel?</h2>
+            <p>Jedes HTML-Element besteht aus Content, Padding, Border und Margin – dem CSS Boxmodel.</p>
+            <div class="boxmodel-visual">
+                <div class="bm-margin">
+                    <span class="label">Margin</span>
+                    <div class="bm-border">
+                        <span class="label">Border</span>
+                        <div class="bm-padding">
+                            <span class="label">Padding</span>
+                            <div class="bm-content">
+                                <span class="label">Content</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <h2>Padding &amp; Margin Varianten</h2>
+        <div class="demo-grid">
+            <div class="box padding-demo">
+                <h3>Padding</h3>
+                <p class="pad-hint">padding: 10px 20px 30px 40px</p>
+                <p>Innenabstand in alle Richtungen</p>
+            </div>
+            <div class="box margin-demo">
+                <h3>Margin</h3>
+                <p class="pad-hint">margin: 20px auto</p>
+                <p>Außenabstand, zentriert</p>
+            </div>
+            <div class="box border-demo">
+                <h3>Border</h3>
+                <p class="pad-hint">border: 4px dashed #e91e63</p>
+                <p>Gestrichelter Rahmen</p>
+            </div>
+            <div class="box radius-demo">
+                <h3>Border-Radius</h3>
+                <p class="pad-hint">border-radius: 50% 20px</p>
+                <p>Abgerundete Ecken</p>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <h2>Box-Sizing Vergleich</h2>
+        <div class="box-sizing-demo">
+            <div class="box box-content">
+                <h3>content-box</h3>
+                <div class="size-info">width: 200px + 40px padding + 10px border = 300px</div>
+                <p>Standard – padding und border werden <strong>aufgeschlagen</strong></p>
+            </div>
+            <div class="box box-border">
+                <h3>border-box</h3>
+                <div class="size-info">width: 200px &rarr; 200px (padding/border inklusive)</div>
+                <p>Padding und Border werden <strong>eingerechnet</strong></p>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <h2>Kreative Shapes mit Border</h2>
+        <div class="shapes">
+            <div class="shape triangle"></div>
+            <div class="shape circle"></div>
+            <div class="shape pill"></div>
+            <div class="shape diamond"></div>
+        </div>
+    </section>
+
+    <section>
+        <h2>Box-Shadow &amp; Effekte</h2>
+        <div class="shadow-grid">
+            <div class="box shadow-light">Leichter Schatten</div>
+            <div class="box shadow-heavy">Starker Schatten</div>
+            <div class="box shadow-color">Farbiger Schatten</div>
+            <div class="box shadow-inset">Innerer Schatten</div>
+            <div class="box shadow-multi">Mehrfach-Schatten</div>
+            <div class="box shadow-glow">Glow-Effekt</div>
+        </div>
+    </section>
+
+    <section>
+        <h2>Karten-Layout mit Boxmodel</h2>
+        <div class="cards">
+            <div class="card-item">
+                <div class="card-img" style="background: #ff6b6b;">1</div>
+                <h3>Card Eins</h3>
+                <p>padding, margin, border-radius und box-shadow in Aktion</p>
+            </div>
+            <div class="card-item featured">
+                <div class="card-img" style="background: #4ecdc4;">2</div>
+                <h3>Card Zwei</h3>
+                <p>Diese Karte hat einen extra dicken Border und hervorgehobenen Schatten</p>
+            </div>
+            <div class="card-item">
+                <div class="card-img" style="background: #45b7d1;">3</div>
+                <h3>Card Drei</h3>
+                <p>Margin-collapse verhindern durch display: flow-root</p>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <h2>Interaktiver Boxmodel-Explorer</h2>
+        <div class="explorer">
+            <div class="controls">
+                <label>Padding: <span id="pad-val">20</span>px
+                    <input type="range" id="pad-slider" min="0" max="60" value="20">
+                </label>
+                <label>Border: <span id="bor-val">4</span>px
+                    <input type="range" id="bor-slider" min="0" max="20" value="4">
+                </label>
+                <label>Margin: <span id="mar-val">20</span>px
+                    <input type="range" id="mar-slider" min="0" max="60" value="20">
+                </label>
+                <label>
+                    Border-Radius: <span id="rad-val">12</span>px
+                    <input type="range" id="rad-slider" min="0" max="50" value="12">
+                </label>
+                <button id="reset-btn">Reset</button>
+            </div>
+            <div id="explorer-box" class="explorer-box">
+                <div class="eb-margin">
+                    <div class="eb-border">
+                        <div class="eb-padding">
+                            <div class="eb-content">
+                                resize me!
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>Hausübung vom 10. November 2025 – CSS Boxmodel kreativ</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
