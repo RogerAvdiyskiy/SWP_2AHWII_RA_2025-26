@@ -1,1 +1,7 @@
+Private Email pub key:
+
 0x3BC11D734BCF4398
+
+Schul Email pub key:
+
+92CB7F9F777608048EAC56426CADE9D605A0E2E4
